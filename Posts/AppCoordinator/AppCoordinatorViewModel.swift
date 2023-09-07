@@ -12,9 +12,11 @@ import Global
 @Observable final class AppCoordinatorViewModel: BaseCoordinatorViewModel<AppCoordinatorViewModel.Screen> {
 
     // MARK: - Init
-    
+
     override init() {
         super.init()
+
+        self.routes = [.root(.login, embedInNavigationView: true)]
     }
 }
 

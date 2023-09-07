@@ -23,6 +23,22 @@ struct AppCoordinatorView: View {
     // MARK: - Body
 
     var body: some View {
-        Text("1")
+        self.content
+    }
+}
+
+// MARK: - Views
+
+private extension AppCoordinatorView {
+
+    var content: some View {
+        Router(self.$viewModel.routes) { screen, _ in
+            switch screen {
+            case .login:
+                Text("self.loginView")
+            case .posts:
+                Text("self.homeView")
+            }
+        }
     }
 }
