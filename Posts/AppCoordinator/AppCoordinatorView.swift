@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FlowStacks
+import Resolver
 
 struct AppCoordinatorView: View {
 

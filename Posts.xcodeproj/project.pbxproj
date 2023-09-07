@@ -15,6 +15,7 @@
 		2B5CB4122AA9FAF100D525CD /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */; };
 		2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4142AA9FB8500D525CD /* FlowStacks */; };
 		2B5CB4302AAA00FD00D525CD /* Global in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB42F2AAA00FD00D525CD /* Global */; };
+		2B5CB4352AAA094300D525CD /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4342AAA094300D525CD /* Resolver */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5CB4352AAA094300D525CD /* Resolver in Frameworks */,
 				2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */,
 				2B5CB4302AAA00FD00D525CD /* Global in Frameworks */,
 			);
@@ -225,6 +227,7 @@
 			packageProductDependencies = (
 				2B5CB4142AA9FB8500D525CD /* FlowStacks */,
 				2B5CB42F2AAA00FD00D525CD /* Global */,
+				2B5CB4342AAA094300D525CD /* Resolver */,
 			);
 			productName = Posts;
 			productReference = 2B076A4A2AA9801C0080616D /* Posts.app */;
@@ -280,6 +283,7 @@
 			mainGroup = 2B076A412AA9801C0080616D;
 			packageReferences = (
 				2B5CB4132AA9FB8500D525CD /* XCRemoteSwiftPackageReference "FlowStacks" */,
+				2B5CB4332AAA094300D525CD /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = 2B076A4B2AA9801C0080616D /* Products */;
 			projectDirPath = "";
@@ -594,6 +598,14 @@
 				minimumVersion = 0.3.4;
 			};
 		};
+		2B5CB4332AAA094300D525CD /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -605,6 +617,11 @@
 		2B5CB42F2AAA00FD00D525CD /* Global */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Global;
+		};
+		2B5CB4342AAA094300D525CD /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B5CB4332AAA094300D525CD /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
