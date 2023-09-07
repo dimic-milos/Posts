@@ -13,7 +13,7 @@ struct PostsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("1")
         }
     }
 }
