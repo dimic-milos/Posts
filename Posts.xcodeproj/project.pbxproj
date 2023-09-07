@@ -36,6 +36,7 @@
 		2B1D4BC72AA989F400BBBBC2 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 		2B5CB40F2AA9FAEB00D525CD /* AppCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorView.swift; sourceTree = "<group>"; };
 		2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		2B5CB4172AA9FCF900D525CD /* Global */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Global; sourceTree = "<group>"; };
 		2B63317F2AA9985500CAD37D /* Post */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Post; sourceTree = "<group>"; };
 		2B6331802AA9989600CAD37D /* PostAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PostAPI; sourceTree = "<group>"; };
 		2B95FAB22AA99E080034B723 /* PostsTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PostsTestPlan.xctestplan; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				2B076A4D2AA9801C0080616D /* PostsApp.swift */,
+				2B5CB4162AA9FCBC00D525CD /* Global */,
 				2B5CB40E2AA9FAD100D525CD /* AppCoordinator */,
 				2BA1D83E2AA98D62004F03BB /* Post */,
 				2BA1D83C2AA98D1D004F03BB /* Login */,
@@ -134,6 +136,14 @@
 				2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */,
 			);
 			path = AppCoordinator;
+			sourceTree = "<group>";
+		};
+		2B5CB4162AA9FCBC00D525CD /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				2B5CB4172AA9FCF900D525CD /* Global */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		2BA1D8342AA98B60004F03BB /* Assets */ = {
