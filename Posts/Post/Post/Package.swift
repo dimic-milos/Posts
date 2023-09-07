@@ -12,13 +12,15 @@ let package = Package(
             targets: ["Post"]),
     ],
     dependencies: [
-        .resolver
+        .resolver,
+        .postAPI
     ],
     targets: [
         .target(
             name: "Post",
             dependencies: [
-                .resolver
+                .resolver,
+                .postAPI
             ]
         ),
         .testTarget(
@@ -43,5 +45,23 @@ extension Target.Dependency {
     static var resolver: Target.Dependency = .product(
         name: "Resolver",
         package: "Resolver"
+    )
+}
+
+// MARK: - PostAPI
+
+extension Package.Dependency {
+
+    static var postAPI: Package.Dependency = .package(
+        url: "https://github.com/hmlongco/PostAPI.git",
+        from: "1.5.0"
+    )
+}
+
+extension Target.Dependency {
+
+    static var postAPI: Target.Dependency = .product(
+        name: "PostAPI",
+        package: "PostAPI"
     )
 }
