@@ -7,9 +7,15 @@
 
 import Foundation
 import FlowStacks
+import Global
 
-@Observable final class AppCoordinatorViewModel {
+@Observable final class AppCoordinatorViewModel: BaseCoordinatorViewModel<AppCoordinatorViewModel.Screen> {
 
+    // MARK: - Init
+    
+    override init() {
+        super.init()
+    }
 }
 
 // MARK: - Screen

@@ -10,9 +10,15 @@ import SwiftUI
 @main
 struct PostsApp: App {
 
+    // MARK: - Private properties
+
+    private let viewModel = AppCoordinatorViewModel()
+
+    // MARK: - Body
+
     var body: some Scene {
         WindowGroup {
-            Text("1")
+            AppCoordinatorView(viewModel: self.viewModel)
         }
     }
 }
