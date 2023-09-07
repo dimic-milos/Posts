@@ -48,6 +48,7 @@
 		2BA1D8392AA98C6E004F03BB /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 		2BA1D83B2AA98CEF004F03BB /* UI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UI; sourceTree = "<group>"; };
 		2BA1D83D2AA98D3E004F03BB /* Login */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Login; sourceTree = "<group>"; };
+		2BA1D83F2AA98DB8004F03BB /* Posts */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Posts; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				2B076A4D2AA9801C0080616D /* PostsApp.swift */,
+				2BA1D83E2AA98D62004F03BB /* Posts */,
 				2BA1D83C2AA98D1D004F03BB /* Login */,
 				2BA1D83A2AA98CCC004F03BB /* UI */,
 				2BA1D8382AA98C47004F03BB /* Persistence */,
@@ -182,6 +184,14 @@
 				2BA1D83D2AA98D3E004F03BB /* Login */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		2BA1D83E2AA98D62004F03BB /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				2BA1D83F2AA98DB8004F03BB /* Posts */,
+			);
+			path = Posts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
