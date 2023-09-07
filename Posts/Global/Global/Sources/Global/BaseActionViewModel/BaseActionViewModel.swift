@@ -12,4 +12,8 @@ open class BaseActionViewModel<Action> {
     // MARK: - Public properties
 
     @State public var actionViewModel: ActionViewModel<Action> = .init()
+
+    // MARK: - Init
+    
+    public init() {}
 }

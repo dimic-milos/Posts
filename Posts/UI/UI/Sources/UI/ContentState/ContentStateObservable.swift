@@ -11,7 +11,7 @@ public protocol ContentStateObservable: ObservableObject {
 
     var state: ContentState { get set }
 
-    func set(state: ContentState, delay: TimeInterval?)
+    func set(state: ContentState)
 }
 
 public extension ContentStateObservable {

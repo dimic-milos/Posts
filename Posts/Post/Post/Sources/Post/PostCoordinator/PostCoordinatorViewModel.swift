@@ -15,12 +15,20 @@ import PostAPI
     PostCoordinatorViewModelProtocol
 {
 
+    // MARK: - Public properties
+
+    var postsContainerViewModel = PostsContainerViewModel()
+
     // MARK: - Init
     
     override init() {
         super.init()
 
-        self.routes = [.root(.posts(isFavourite: false), embedInNavigationView: true)]
+        self.routes = [.root(.posts(viewModel: self.postsContainerViewModel))]
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.routes.presentSheet(.comments)
+        }
     }
 }
 
@@ -30,7 +38,7 @@ extension PostCoordinatorViewModel {
 
     enum Screen {
 
-        case posts(isFavourite: Bool)
+        case posts(viewModel: PostsContainerViewModel)
         case comments
     }
 }

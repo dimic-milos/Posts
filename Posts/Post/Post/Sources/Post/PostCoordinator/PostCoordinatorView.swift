@@ -24,7 +24,7 @@ struct PostCoordinatorView: PostCoordinatorViewProtocol {
     // MARK: - Body
 
     var body: some View {
-        Text("PostCoordinatorView")
+        self.content
     }
 }
 
@@ -35,8 +35,8 @@ private extension PostCoordinatorView {
     var content: some View {
         Router(self.$viewModel.routes) { screen, _ in
             switch screen {
-            case .posts(let isFavourite):
-                Text("Posts")
+            case .posts:
+                PostsContainerView(viewModel: self.viewModel.postsContainerViewModel)
             case .comments:
                 Text("Comments")
             }

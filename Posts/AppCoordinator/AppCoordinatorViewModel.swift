@@ -23,6 +23,10 @@ import PostAPI
 
     override init() {
         super.init()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.startPostFlow()
+        }
     }
 
     // MARK: - API

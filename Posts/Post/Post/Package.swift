@@ -15,6 +15,7 @@ let package = Package(
         .flowStacks,
         .resolver,
         .global,
+        .ui,
         .postAPI
     ],
     targets: [
@@ -24,6 +25,7 @@ let package = Package(
                 .flowStacks,
                 .resolver,
                 .global,
+                .ui,
                 .postAPI
             ]
         ),
@@ -83,6 +85,21 @@ extension Target.Dependency {
     static var global: Target.Dependency = .product(
         name: "Global",
         package: "Global"
+    )
+}
+
+// MARK: - UI
+
+extension Package.Dependency {
+
+    static var ui: Package.Dependency = .package(path: "../UI")
+}
+
+extension Target.Dependency {
+
+    static var ui: Target.Dependency = .product(
+        name: "UI",
+        package: "UI"
     )
 }
 
