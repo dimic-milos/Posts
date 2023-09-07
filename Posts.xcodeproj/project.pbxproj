@@ -43,6 +43,8 @@
 		2B076A6A2AA9801E0080616D /* PostsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUITests.swift; sourceTree = "<group>"; };
 		2B076A6C2AA9801E0080616D /* PostsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2B1D4BC72AA989F400BBBBC2 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
+		2B63317F2AA9985500CAD37D /* Post */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Post; sourceTree = "<group>"; };
+		2B6331802AA9989600CAD37D /* PostAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PostAPI; sourceTree = "<group>"; };
 		2BA1D8352AA98B80004F03BB /* Assets */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Assets; sourceTree = "<group>"; };
 		2BA1D8372AA98C05004F03BB /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
 		2BA1D8392AA98C6E004F03BB /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
@@ -190,6 +192,8 @@
 		2BA1D83E2AA98D62004F03BB /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				2B6331802AA9989600CAD37D /* PostAPI */,
+				2B63317F2AA9985500CAD37D /* Post */,
 			);
 			path = Post;
 			sourceTree = "<group>";
