@@ -13,13 +13,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        .resolver
+        .resolver,
+        .loginAPI
     ],
     targets: [
         .target(
             name: "Login",
             dependencies: [
-                .resolver
+                .resolver,
+                .loginAPI
             ]
         )
         ,
@@ -45,5 +47,24 @@ extension Target.Dependency {
     static var resolver: Target.Dependency = .product(
         name: "Resolver",
         package: "Resolver"
+    )
+}
+
+
+// MARK: - LoginAPI
+
+extension Package.Dependency {
+
+    static var loginAPI: Package.Dependency = .package(
+        url: "https://github.com/hmlongco/LoginAPI.git",
+        from: "1.1.2"
+    )
+}
+
+extension Target.Dependency {
+
+    static var loginAPI: Target.Dependency = .product(
+        name: "LoginAPI",
+        package: "LoginAPI"
     )
 }
