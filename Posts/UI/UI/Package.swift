@@ -9,9 +9,33 @@ let package = Package(
     products: [
         .library(
             name: "UI",
-            targets: ["UI"]),
+            targets: ["UI"]
+        )
+    ],
+    dependencies: [
+        .global
     ],
     targets: [
-        .target(name: "UI"),
+        .target(
+            name: "UI",
+            dependencies: [
+                .global
+            ]
+        )
     ]
 )
+
+// MARK: - Global
+
+extension Package.Dependency {
+
+    static var global: Package.Dependency = .package(path: "../Global")
+}
+
+extension Target.Dependency {
+
+    static var global: Target.Dependency = .product(
+        name: "Global",
+        package: "Global"
+    )
+}

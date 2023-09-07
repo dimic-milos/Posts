@@ -11,7 +11,7 @@ public struct ContentStateView<Source: ContentStateObservable, Content: View>: V
 
     // MARK: - Private properties
 
-    @State private var source: Source
+    @ObservedObject private var source: Source
     private var content: Content
 
     // MARK: - Init

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@Observable public protocol ContentStateObservable: AnyObject {
+public protocol ContentStateObservable: ObservableObject {
 
     var state: ContentState { get set }
 
