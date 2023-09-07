@@ -6,8 +6,21 @@
 //
 
 import SwiftUI
+import PostAPI
 
 struct PostCoordinatorView: PostCoordinatorViewProtocol {
+
+    // MARK: - Private properties
+
+    @State private var viewModel: PostCoordinatorViewModel
+
+    // MARK: - Init
+
+    init(viewModel: PostCoordinatorViewModel) {
+        self.viewModel = viewModel
+    }
+
+    // MARK: - Body
 
     var body: some View {
         Text("PostCoordinatorView")

@@ -10,6 +10,18 @@ import LoginAPI
 
 struct LoginCoordinatorView: LoginCoordinatorViewProtocol {
     
+    // MARK: - Private properties
+
+    @State private var viewModel: LoginCoordinatorViewModel
+    
+    // MARK: - Init
+
+    init(viewModel: LoginCoordinatorViewModel) {
+        self.viewModel = viewModel
+    }
+
+    // MARK: - Body
+    
     var body: some View {
         Text("LoginCoordinatorView")
     }

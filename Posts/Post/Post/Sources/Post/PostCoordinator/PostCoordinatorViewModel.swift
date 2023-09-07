@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import PostAPI
 
 final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol {
-    
+
 }

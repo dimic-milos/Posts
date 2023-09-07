@@ -11,4 +11,3 @@ public enum LoginCoordinatorAction {
 
     case didLogin(userID: Int)
 }
-
