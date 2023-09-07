@@ -55,10 +55,7 @@ extension Target.Dependency {
 
 extension Package.Dependency {
 
-    static var loginAPI: Package.Dependency = .package(
-        url: "https://github.com/hmlongco/LoginAPI.git",
-        from: "1.1.2"
-    )
+    static var loginAPI: Package.Dependency = .package(path: "../LoginAPI")
 }
 
 extension Target.Dependency {
