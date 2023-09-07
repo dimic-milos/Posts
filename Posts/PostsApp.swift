@@ -14,6 +14,12 @@ struct PostsApp: App {
 
     private let viewModel = AppCoordinatorViewModel()
 
+    // MARK: - Init
+
+    init() {
+        DependencyRegistrationHelper.register()
+    }
+
     // MARK: - Body
 
     var body: some Scene {

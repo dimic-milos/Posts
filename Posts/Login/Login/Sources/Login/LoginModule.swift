@@ -1,6 +1,6 @@
 import Resolver
 
-public enum PostModule {
+public enum LoginModule {
 
     public static func registerDependencies() {
 

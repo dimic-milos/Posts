@@ -1,2 +1,14 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
+import SwiftUI
+
+// MARK: - Coordinator
+
+public protocol LoginCoordinatorViewModelProtocol {}
+public protocol LoginCoordinatorViewProtocol: View {}
+
+// MARK: - Actions
+
+public enum LoginCoordinatorAction {
+
+    case didLogin(userID: Int)
+}
+
