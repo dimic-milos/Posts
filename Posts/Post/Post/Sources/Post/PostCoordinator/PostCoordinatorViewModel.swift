@@ -6,8 +6,31 @@
 //
 
 import Foundation
+import FlowStacks
+import Global
 import PostAPI
 
-final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol {
+@Observable final class PostCoordinatorViewModel:
+    BaseCoordinatorViewModel<PostCoordinatorViewModel.Screen>,
+    PostCoordinatorViewModelProtocol
+{
 
+    // MARK: - Init
+    
+    override init() {
+        super.init()
+
+        self.routes = [.root(.posts(isFavourite: false), embedInNavigationView: true)]
+    }
+}
+
+// MARK: - Screen
+
+extension PostCoordinatorViewModel {
+
+    enum Screen {
+
+        case posts(isFavourite: Bool)
+        case comments
+    }
 }

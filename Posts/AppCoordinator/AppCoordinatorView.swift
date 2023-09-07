@@ -8,7 +8,9 @@
 import SwiftUI
 import FlowStacks
 import Resolver
+import UI
 import LoginAPI
+import PostAPI
 
 struct AppCoordinatorView: View {
 
@@ -27,11 +29,11 @@ struct AppCoordinatorView: View {
 
     var body: some View {
         self.content
-            .onAppear {
+            .onFirstAppear {
                 self.viewModel.startLoginFlow(action: self.$loginCoordinatorAction)
             }
             .onChange(of: self.loginCoordinatorAction, initial: false) { _, newValue in
-                print("MiDi 12.12.2016", #file, #line, #function, newValue!)
+                newValue.map(self.viewModel.handle(loginCoordinatorAction:))
             }
     }
 }
@@ -44,15 +46,20 @@ private extension AppCoordinatorView {
         Router(self.$viewModel.routes) { screen, _ in
             switch screen {
             case .login(let viewModel):
-                self.makeLoginView(viewModel: viewModel)
-            case .posts:
-                Text("self.homeView")
+                self.makeLoginCoordinatorView(viewModel: viewModel)
+            case .posts(let viewModel):
+                self.makePostsCoordinatorView(viewModel: viewModel)
             }
         }
     }
 
-    func makeLoginView(viewModel: LoginCoordinatorViewModelProtocol) -> some View {
+    func makeLoginCoordinatorView(viewModel: LoginCoordinatorViewModelProtocol) -> some View {
         let view: any LoginCoordinatorViewProtocol = Resolver.resolve(args: viewModel)
+        return AnyView(view)
+    }
+
+    func makePostsCoordinatorView(viewModel: PostCoordinatorViewModelProtocol) -> some View {
+        let view: any PostCoordinatorViewProtocol = Resolver.resolve(args: viewModel)
         return AnyView(view)
     }
 }

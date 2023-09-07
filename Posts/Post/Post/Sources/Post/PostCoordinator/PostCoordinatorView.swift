@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FlowStacks
 import PostAPI
 
 struct PostCoordinatorView: PostCoordinatorViewProtocol {
@@ -24,5 +25,21 @@ struct PostCoordinatorView: PostCoordinatorViewProtocol {
 
     var body: some View {
         Text("PostCoordinatorView")
+    }
+}
+
+// MARK: - Views
+
+private extension PostCoordinatorView {
+
+    var content: some View {
+        Router(self.$viewModel.routes) { screen, _ in
+            switch screen {
+            case .posts(let isFavourite):
+                Text("Posts")
+            case .comments:
+                Text("Comments")
+            }
+        }
     }
 }

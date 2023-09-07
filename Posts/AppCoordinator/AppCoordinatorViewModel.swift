@@ -17,6 +17,7 @@ import PostAPI
     // MARK: - Private properties
 
     private var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
+    private var postCoordinatorViewModel: PostCoordinatorViewModelProtocol?
 
     // MARK: - Init
 
@@ -30,6 +31,22 @@ import PostAPI
         let viewModel: LoginCoordinatorViewModelProtocol = Resolver.resolve(args: action)
         self.loginCoordinatorViewModel = viewModel
         self.routes = [.root(.login(viewModel), embedInNavigationView: true)]
+    }
+
+    func handle(loginCoordinatorAction: LoginCoordinatorAction) {
+        switch loginCoordinatorAction {
+        case .didLogin(let userID):
+            DependencyRegistrationHelper.registerDatabase(id: userID)
+            self.startPostFlow()
+        }
+    }
+
+    // MARK: - Helpers
+
+    private func startPostFlow() {
+        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve()
+        self.postCoordinatorViewModel = viewModel
+        self.routes.push(.posts(viewModel))
     }
 }
 

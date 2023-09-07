@@ -19,6 +19,7 @@
 		2B5CB4372AAA0BD900D525CD /* DependencyRegistrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB4362AAA0BD900D525CD /* DependencyRegistrationHelper.swift */; };
 		2B5CB4392AAA208600D525CD /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4382AAA208600D525CD /* Login */; };
 		2B5CB43B2AAA208B00D525CD /* Post in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43A2AAA208B00D525CD /* Post */; };
+		2B5CB43D2AAA428100D525CD /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43C2AAA428100D525CD /* UI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 				2B5CB4352AAA094300D525CD /* Resolver in Frameworks */,
 				2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */,
 				2B5CB4392AAA208600D525CD /* Login in Frameworks */,
+				2B5CB43D2AAA428100D525CD /* UI in Frameworks */,
 				2B5CB4302AAA00FD00D525CD /* Global in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +239,7 @@
 				2B5CB4342AAA094300D525CD /* Resolver */,
 				2B5CB4382AAA208600D525CD /* Login */,
 				2B5CB43A2AAA208B00D525CD /* Post */,
+				2B5CB43C2AAA428100D525CD /* UI */,
 			);
 			productName = Posts;
 			productReference = 2B076A4A2AA9801C0080616D /* Posts.app */;
@@ -640,6 +643,10 @@
 		2B5CB43A2AAA208B00D525CD /* Post */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Post;
+		};
+		2B5CB43C2AAA428100D525CD /* UI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

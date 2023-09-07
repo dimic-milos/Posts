@@ -12,14 +12,18 @@ let package = Package(
             targets: ["Post"]),
     ],
     dependencies: [
+        .flowStacks,
         .resolver,
+        .global,
         .postAPI
     ],
     targets: [
         .target(
             name: "Post",
             dependencies: [
+                .flowStacks,
                 .resolver,
+                .global,
                 .postAPI
             ]
         ),
@@ -29,6 +33,25 @@ let package = Package(
         )
     ]
 )
+
+// MARK: - FlowStacks
+
+extension Package.Dependency {
+
+    static var flowStacks: Package.Dependency = .package(
+        url: "https://github.com/johnpatrickmorgan/FlowStacks.git",
+        exact: "0.3.4"
+    )
+}
+
+extension Target.Dependency {
+
+    static var flowStacks: Target.Dependency = .product(
+        name: "FlowStacks",
+        package: "FlowStacks"
+    )
+}
+
 
 // MARK: - Resolver
 
@@ -48,14 +71,26 @@ extension Target.Dependency {
     )
 }
 
+// MARK: - Global
+
+extension Package.Dependency {
+
+    static var global: Package.Dependency = .package(path: "../Global")
+}
+
+extension Target.Dependency {
+
+    static var global: Target.Dependency = .product(
+        name: "Global",
+        package: "Global"
+    )
+}
+
 // MARK: - PostAPI
 
 extension Package.Dependency {
 
-    static var postAPI: Package.Dependency = .package(
-        url: "https://github.com/hmlongco/PostAPI.git",
-        from: "1.5.0"
-    )
+    static var postAPI: Package.Dependency = .package(path: "../PostAPI")
 }
 
 extension Target.Dependency {
