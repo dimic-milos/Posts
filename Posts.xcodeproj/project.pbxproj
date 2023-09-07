@@ -49,6 +49,7 @@
 		2BA1D83B2AA98CEF004F03BB /* UI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UI; sourceTree = "<group>"; };
 		2BA1D83D2AA98D3E004F03BB /* Login */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Login; sourceTree = "<group>"; };
 		2BA1D83F2AA98DB8004F03BB /* Posts */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Posts; sourceTree = "<group>"; };
+		2BA1D8402AA98EA8004F03BB /* PostsAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PostsAPI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +190,7 @@
 		2BA1D83E2AA98D62004F03BB /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				2BA1D8402AA98EA8004F03BB /* PostsAPI */,
 				2BA1D83F2AA98DB8004F03BB /* Posts */,
 			);
 			path = Posts;
