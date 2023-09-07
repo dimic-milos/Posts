@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostCoordinatorView: View {
+struct PostCoordinatorView: PostCoordinatorViewProtocol {
 
     var body: some View {
         Text("PostCoordinatorView")

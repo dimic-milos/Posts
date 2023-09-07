@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class PostCoordinatorViewModel {
+final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol {
     
 }

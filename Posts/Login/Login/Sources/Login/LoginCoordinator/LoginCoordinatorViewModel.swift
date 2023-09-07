@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import LoginAPI
 
-final class LoginCoordinatorViewModel {
+final class LoginCoordinatorViewModel: LoginCoordinatorViewModelProtocol {
     
 }

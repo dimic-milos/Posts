@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import LoginAPI
 
-struct LoginCoordinatorView: View {
+struct LoginCoordinatorView: LoginCoordinatorViewProtocol {
     
     var body: some View {
         Text("LoginCoordinatorView")
