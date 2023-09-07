@@ -11,6 +11,7 @@
 		2B076A542AA9801E0080616D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B076A532AA9801E0080616D /* Assets.xcassets */; };
 		2B076A572AA9801E0080616D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B076A562AA9801E0080616D /* Preview Assets.xcassets */; };
 		2B076A612AA9801E0080616D /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076A602AA9801E0080616D /* PostsTests.swift */; };
+		2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4142AA9FB8500D525CD /* FlowStacks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +188,9 @@
 			dependencies = (
 			);
 			name = Posts;
+			packageProductDependencies = (
+				2B5CB4142AA9FB8500D525CD /* FlowStacks */,
+			);
 			productName = Posts;
 			productReference = 2B076A4A2AA9801C0080616D /* Posts.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +241,9 @@
 				Base,
 			);
 			mainGroup = 2B076A412AA9801C0080616D;
+			packageReferences = (
+				2B5CB4132AA9FB8500D525CD /* XCRemoteSwiftPackageReference "FlowStacks" */,
+			);
 			productRefGroup = 2B076A4B2AA9801C0080616D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -537,6 +545,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B5CB4132AA9FB8500D525CD /* XCRemoteSwiftPackageReference "FlowStacks" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnpatrickmorgan/FlowStacks.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B5CB4142AA9FB8500D525CD /* FlowStacks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B5CB4132AA9FB8500D525CD /* XCRemoteSwiftPackageReference "FlowStacks" */;
+			productName = FlowStacks;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B076A422AA9801C0080616D /* Project object */;
 }
