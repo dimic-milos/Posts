@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "C46CA07F-F1E1-477D-92A9-F57561604F54",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "LoginTests",
+        "name" : "LoginTests"
+      }
+    }
+  ],
+  "version" : 1
+}

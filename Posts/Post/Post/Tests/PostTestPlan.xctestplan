@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "F66D5983-8544-458A-BB25-6A8A8696FB35",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "PostTests",
+        "name" : "PostTests"
+      }
+    }
+  ],
+  "version" : 1
+}
