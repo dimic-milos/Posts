@@ -11,8 +11,8 @@ import LoginAPI
 extension Resolver {
 
     static func registerCoordinators() {
-        self.register {
-            LoginCoordinatorViewModel()
+        self.register { _, args in
+            LoginCoordinatorViewModel(coordinatorAction: args())
         }
         .implements(LoginCoordinatorViewModelProtocol.self)
 

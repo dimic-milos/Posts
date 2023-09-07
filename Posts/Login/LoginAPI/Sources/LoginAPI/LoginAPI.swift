@@ -7,7 +7,7 @@ public protocol LoginCoordinatorViewProtocol: View {}
 
 // MARK: - Actions
 
-public enum LoginCoordinatorAction {
+public enum LoginCoordinatorAction: Equatable {
 
     case didLogin(userID: Int)
 }
