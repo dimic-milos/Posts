@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "57A49AC5-8042-4161-AA31-F0216A5A1354",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Posts.xcodeproj",
+      "identifier" : "2B076A492AA9801C0080616D",
+      "name" : "Posts"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Posts.xcodeproj",
+        "identifier" : "2B076A5B2AA9801E0080616D",
+        "name" : "PostsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Posts\/Login\/Login",
+        "identifier" : "LoginTests",
+        "name" : "LoginTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Posts\/Post\/Post",
+        "identifier" : "PostTests",
+        "name" : "PostTests"
+      }
+    }
+  ],
+  "version" : 1
+}
