@@ -16,6 +16,8 @@ protocol PostsServiceProtocol {
 
     func fetchPosts(userID: Int) async throws -> [PostAPIModel]
     func fetchFavourites(ids: [Int]?) async throws -> [PostDBModel]
+    func save(model: PostDBModel) async throws
+    func delete(id: Int) async throws
 }
 
 final class PostsService {
@@ -60,5 +62,16 @@ extension PostsService: PostsServiceProtocol {
             sortBy: [sort]
         )
         return try await self.persistence.fetch(descriptor: descriptor)
+    }
+
+    func save(model: PostDBModel) async throws {
+        try await self.persistence.save(model: model)
+    }
+
+    func delete(id: Int) async throws {
+        let predicate = #Predicate<PostDBModel> {
+            $0.id == id
+        }
+        try await self.persistence.delete(predicate: predicate)
     }
 }

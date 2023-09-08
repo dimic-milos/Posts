@@ -13,7 +13,7 @@ final class AllPostsViewModel: PostsBaseViewModel {
         Task {
             do {
                 self.set(state: .loading)
-                let posts = try await self.manager.fetchPosts(userID: 1)
+                let posts = try await self.manager.fetchPosts(userID: self.userID)
                 let favourites = try await self.manager.fetchFavourites(ids: posts.map(\.id))
                 print("MiDi 12.12.2016", #file, #line, #function, posts)
                 print("MiDi 12.12.2016", #file, #line, #function, favourites)

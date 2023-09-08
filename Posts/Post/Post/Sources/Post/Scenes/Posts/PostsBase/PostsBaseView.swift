@@ -38,7 +38,7 @@ private extension PostsBaseView {
 
     var content: some View {
         List(self.viewModel.postConfigs, id: \.self) {
-            PostView(config: $0, onTap: self.viewModel.handle(modelAction:))
+            PostView(config: $0, onTap: self.viewModel.handle(action:))
         }
     }
 }

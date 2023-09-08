@@ -33,7 +33,7 @@ private extension PostView {
     var postTextContentView: some View {
         Button(
             action: {
-                self.onTap(.init(action: .didTapText, post: self.config.model))
+                self.onTap(.init(action: .didTapText, model: self.config.model))
             },
             label: {
                 VStack {
@@ -47,7 +47,7 @@ private extension PostView {
     var starView: some View {
         Image(systemName: self.config.isFavourite ? "star.fill" : "star")
             .onTapGesture {
-                self.onTap(.init(action: .didTapStar, post: self.config.model))
+                self.onTap(.init(action: .didTapStar, model: self.config.model))
             }
     }
 }
@@ -68,5 +68,5 @@ enum TapAction {
 struct ModelAction {
 
     let action: TapAction
-    let post: PostModel
+    let model: PostModel
 }
