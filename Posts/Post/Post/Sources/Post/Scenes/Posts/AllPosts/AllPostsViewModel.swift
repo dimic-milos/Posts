@@ -10,8 +10,6 @@ import Foundation
 final class AllPostsViewModel: PostsBaseViewModel {
 
     override func load() {
-        print("MiDi 12.12.2016", #file, #line, #function)
-
         Task {
             do {
                 self.set(state: .loading)
