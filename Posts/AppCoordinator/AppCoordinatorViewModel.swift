@@ -19,16 +19,6 @@ import PostAPI
     private var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
     private var postCoordinatorViewModel: PostCoordinatorViewModelProtocol?
 
-    // MARK: - Init
-
-    override init() {
-        super.init()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.startPostFlow()
-        }
-    }
-
     // MARK: - API
 
     func startLoginFlow(action: Binding<LoginCoordinatorAction?>) {
@@ -41,14 +31,14 @@ import PostAPI
         switch loginCoordinatorAction {
         case .didLogin(let userID):
             DependencyRegistrationHelper.registerDatabase(userID: userID)
-            self.startPostFlow()
+            self.startPostFlow(userID: userID)
         }
     }
 
     // MARK: - Helpers
 
-    private func startPostFlow() {
-        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve()
+    private func startPostFlow(userID: Int) {
+        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve(args: userID)
         self.postCoordinatorViewModel = viewModel
         self.routes.push(.posts(viewModel))
     }

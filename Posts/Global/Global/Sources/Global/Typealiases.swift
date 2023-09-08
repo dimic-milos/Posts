@@ -6,3 +6,4 @@
 //
 
 public typealias VoidCompletion = () -> Void
+public typealias Completion<T> = (T) -> Void

@@ -12,8 +12,4 @@ final class FavouritePostsViewModel: PostsBaseViewModel {
     override func load() {
         print("MiDi 12.12.2016", #file, #line, #function)
     }
-
-    override func didTapStar() {
-        print("MiDi 12.12.2016", #file, #line, #function)
-    }
 }

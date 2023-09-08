@@ -6,7 +6,7 @@ public protocol PersistenceServiceProtocol {
 
     func save<T: PersistentModel>(model: T) async throws
     func delete<T: PersistentModel>(predicate: Predicate<T>) async throws
-    func fetch<T: PersistentModel>(sort: SortDescriptor<T>) async throws -> [T]
+    func fetch<T: PersistentModel>(descriptor: FetchDescriptor<T>) async throws -> [T]
 }
 
 actor PersistenceService {
@@ -55,7 +55,7 @@ extension PersistenceService: PersistenceServiceProtocol {
         }
     }
 
-    public func fetch<T: PersistentModel>(sort: SortDescriptor<T>) throws -> [T] {
-        try ModelContext(self.container).fetch(FetchDescriptor<T>(sortBy: [sort]))
+    public func fetch<T: PersistentModel>(descriptor: FetchDescriptor<T>) throws -> [T] {
+        try ModelContext(self.container).fetch(descriptor)
     }
 }

@@ -35,8 +35,8 @@ private extension PostCoordinatorView {
     var content: some View {
         Router(self.$viewModel.routes) { screen, _ in
             switch screen {
-            case .posts:
-                PostsContainerView(viewModel: self.viewModel.postsContainerViewModel)
+            case .posts(let viewModel):
+                PostsContainerView(viewModel: viewModel)
             case .comments:
                 Text("Comments")
             }

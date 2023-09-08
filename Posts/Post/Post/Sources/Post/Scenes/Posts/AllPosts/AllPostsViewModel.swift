@@ -15,16 +15,23 @@ final class AllPostsViewModel: PostsBaseViewModel {
         Task {
             do {
                 let posts = try await self.manager.fetchPosts(userID: 1)
+                let favourites = try self.manager.fetchFavourites(ids: posts.map(\.id))
                 print("MiDi 12.12.2016", #file, #line, #function, posts)
+                print("MiDi 12.12.2016", #file, #line, #function, favourites)
+                await MainActor.run {
+                    self.postConfigs = posts.map {
+                        .init(
+                            model: $0,
+                            isFavourite: favourites.contains($0)
+                        )
+                    }
+                }
+
             } catch {
                 print("MiDi 12.12.2016", #file, #line, #function, error)
             }
 
         }
 
-    }
-
-    override func didTapStar() {
-        print("MiDi 12.12.2016", #file, #line, #function)
     }
 }

@@ -8,12 +8,13 @@
 import Foundation
 import Resolver
 import Network
+import Persistence
 import Models
 
 protocol PostsServiceProtocol {
 
     func fetchPosts(userID: Int) async throws -> [PostAPIModel]
-    func fetchFavouritePosts() -> [PostDBModel]
+    func fetchFavourites(ids: [Int]?) -> [PostDBModel]
 }
 
 final class PostsService {
@@ -21,6 +22,7 @@ final class PostsService {
     // MARK: - Private properties
 
     @Injected private var network: NetworkServiceProtocol
+    @Injected private var persistence: PersistenceServiceProtocol
 }
 
 extension PostsService: PostsServiceProtocol {
@@ -39,7 +41,7 @@ extension PostsService: PostsServiceProtocol {
         )
     }
 
-    func fetchFavouritePosts() -> [PostDBModel] {
+    func fetchFavourites(ids: [Int]?) -> [PostDBModel] {
         []
     }
 }

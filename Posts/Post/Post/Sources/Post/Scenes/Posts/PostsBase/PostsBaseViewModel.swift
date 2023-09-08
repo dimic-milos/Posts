@@ -6,15 +6,18 @@
 //
 
 import Foundation
+import Combine
 import Resolver
 import Global
+import Models
 import UI
 
 protocol PostsBaseViewModelProtocol: ContentStateObservable {
 
-   func load()
-   func didTapStar()
-   func didTapPost(id: Int)
+    var postConfigs: [PostConfig] { get }
+
+    func load()
+    func handle(modelAction: ModelAction)
 }
 
 class PostsBaseViewModel: 
@@ -25,8 +28,18 @@ class PostsBaseViewModel:
     // MARK: - Public properties
 
     var state: ContentState = .success
+    let userID: Int
+
+    @Published var postConfigs: [PostConfig] = []
 
     @Injected private(set) var manager: PostsManagerProtocol
+
+    // MARK: - Init
+
+    init(userID: Int) {
+        self.userID = userID
+        super.init()
+    }
 
     // MARK: - API
 
@@ -34,12 +47,17 @@ class PostsBaseViewModel:
         fatalError("Override")
     }
 
-    func didTapStar() {
-        fatalError("Override")
+    final func handle(modelAction: ModelAction) {
+        switch modelAction.action {
+        case .didTapText:
+            print("MiDi 12.12.2016", #file, #line, #function)
+        case .didTapStar:
+            print("MiDi 12.12.2016", #file, #line, #function)
+        }
     }
 
-    final func didTapPost(id: Int) {
-        self.actionViewModel.action = .didTapPost(id: id)
+    final func didTap(model: PostModel) {
+        self.actionViewModel.action = .didTapPost(id: model.id)
     }
 }
 

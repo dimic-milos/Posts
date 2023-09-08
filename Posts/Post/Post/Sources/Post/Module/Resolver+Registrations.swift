@@ -11,8 +11,8 @@ import Resolver
 extension Resolver {
 
     static func registerCoordinators() {
-        self.register {
-            PostCoordinatorViewModel()
+        self.register { _, args in
+            PostCoordinatorViewModel(userID: args())
         }
         .implements(PostCoordinatorViewModelProtocol.self)
 

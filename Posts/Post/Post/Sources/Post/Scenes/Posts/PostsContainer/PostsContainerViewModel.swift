@@ -21,12 +21,17 @@ final class PostsContainerViewModel:
 
     // MARK: - Public properties
 
-    var allPostsViewModel = AllPostsViewModel()
-    var favouritePostsViewModel = FavouritePostsViewModel()
+    lazy var allPostsViewModel = AllPostsViewModel(userID: self.userID)
+    lazy var favouritePostsViewModel = FavouritePostsViewModel(userID: self.userID)
+
+    // MARK: - Private properties
+
+    private let userID: Int
 
     // MARK: - Init
     
-    override init() {
+    init(userID: Int) {
+        self.userID = userID
         super.init()
     }
 }

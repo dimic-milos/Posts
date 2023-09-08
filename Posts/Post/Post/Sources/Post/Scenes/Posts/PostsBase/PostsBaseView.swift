@@ -12,12 +12,12 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 
     // MARK: - Private properties
 
-    private var viewModel: ViewModel
+    @StateObject private var viewModel: ViewModel
 
     // MARK: - Init
 
     init(viewModel: ViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -37,6 +37,8 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 private extension PostsBaseView {
 
     var content: some View {
-        Text("PostsBaseView")
+        List(self.viewModel.postConfigs, id: \.self) {
+            PostView(config: $0, onTap: self.viewModel.handle(modelAction:))
+        }
     }
 }

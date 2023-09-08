@@ -15,20 +15,18 @@ import PostAPI
     PostCoordinatorViewModelProtocol
 {
 
-    // MARK: - Public properties
+    // MARK: - Private properties
 
-    var postsContainerViewModel = PostsContainerViewModel()
+    private var postsContainerViewModel: PostsContainerViewModel?
 
     // MARK: - Init
     
-    override init() {
+    init(userID: Int) {
         super.init()
 
-        self.routes = [.root(.posts(viewModel: self.postsContainerViewModel))]
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.routes.presentSheet(.comments)
-        }
+        let postsContainerViewModel = PostsContainerViewModel(userID: userID)
+        self.postsContainerViewModel = postsContainerViewModel
+        self.routes = [.root(.posts(viewModel: postsContainerViewModel))]
     }
 }
 

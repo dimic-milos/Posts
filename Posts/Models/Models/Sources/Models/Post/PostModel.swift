@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PostModel {
+public struct PostModel: Hashable {
 
     public let id: Int
     public let title: String
