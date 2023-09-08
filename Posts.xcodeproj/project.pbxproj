@@ -20,6 +20,7 @@
 		2B5CB4392AAA208600D525CD /* Login in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4382AAA208600D525CD /* Login */; };
 		2B5CB43B2AAA208B00D525CD /* Post in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43A2AAA208B00D525CD /* Post */; };
 		2B5CB43D2AAA428100D525CD /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43C2AAA428100D525CD /* UI */; };
+		2B5CB43F2AAAEE4800D525CD /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43E2AAAEE4800D525CD /* Network */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B5CB43B2AAA208B00D525CD /* Post in Frameworks */,
+				2B5CB43F2AAAEE4800D525CD /* Network in Frameworks */,
 				2B5CB4352AAA094300D525CD /* Resolver in Frameworks */,
 				2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */,
 				2B5CB4392AAA208600D525CD /* Login in Frameworks */,
@@ -240,6 +242,7 @@
 				2B5CB4382AAA208600D525CD /* Login */,
 				2B5CB43A2AAA208B00D525CD /* Post */,
 				2B5CB43C2AAA428100D525CD /* UI */,
+				2B5CB43E2AAAEE4800D525CD /* Network */,
 			);
 			productName = Posts;
 			productReference = 2B076A4A2AA9801C0080616D /* Posts.app */;
@@ -647,6 +650,10 @@
 		2B5CB43C2AAA428100D525CD /* UI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UI;
+		};
+		2B5CB43E2AAAEE4800D525CD /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Network;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

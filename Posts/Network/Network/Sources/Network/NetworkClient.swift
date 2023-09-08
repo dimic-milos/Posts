@@ -10,7 +10,6 @@ final class NetworkClient {
     // MARK: - Private properties
 
     private let session = URLSession.shared
-    private var userAgent: String?
 
     // MARK: - Init
 
