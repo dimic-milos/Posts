@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PostAPIModel {
+public struct PostAPIModel: Decodable {
 
     // MARK: - Public properties
 

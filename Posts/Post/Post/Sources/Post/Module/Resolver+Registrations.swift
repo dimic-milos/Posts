@@ -23,10 +23,16 @@ extension Resolver {
     }
 
     static func registerServices() {
-
+        self.register {
+            PostsService()
+        }
+        .implements(PostsServiceProtocol.self)
     }
 
     static func registerManagers() {
-
+        self.register {
+            PostsManager()
+        }
+        .implements(PostsManagerProtocol.self)
     }
 }

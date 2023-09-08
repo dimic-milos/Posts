@@ -16,6 +16,8 @@ let package = Package(
         .resolver,
         .global,
         .ui,
+        .network,
+        .models,
         .postAPI
     ],
     targets: [
@@ -26,6 +28,8 @@ let package = Package(
                 .resolver,
                 .global,
                 .ui,
+                .network,
+                .models,
                 .postAPI
             ]
         ),
@@ -100,6 +104,36 @@ extension Target.Dependency {
     static var ui: Target.Dependency = .product(
         name: "UI",
         package: "UI"
+    )
+}
+
+// MARK: - Network
+
+extension Package.Dependency {
+
+    static var network: Package.Dependency = .package(path: "../Network")
+}
+
+extension Target.Dependency {
+
+    static var network: Target.Dependency = .product(
+        name: "Network",
+        package: "Network"
+    )
+}
+
+// MARK: - Model
+
+extension Package.Dependency {
+
+    static var models: Package.Dependency = .package(path: "../Models")
+}
+
+extension Target.Dependency {
+
+    static var models: Target.Dependency = .product(
+        name: "Models",
+        package: "Models"
     )
 }
 
