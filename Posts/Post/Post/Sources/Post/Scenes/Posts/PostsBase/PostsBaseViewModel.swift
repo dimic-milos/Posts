@@ -27,7 +27,7 @@ class PostsBaseViewModel:
 
     // MARK: - Public properties
 
-    var state: ContentState = .success
+    var state: ContentState = .loading
     let userID: Int
 
     @Published var postConfigs: [PostConfig] = []

@@ -13,7 +13,7 @@ struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
 
     private var viewModel: ViewModel
 
-    @State private var selectedTab = Tab.favourites
+    @State private var selectedTab = Tab.posts
 
     // MARK: - Init
 
