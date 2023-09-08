@@ -15,5 +15,6 @@ extension Resolver {
             PersistenceService(userID: userID)
         }
         .implements(PersistenceServiceProtocol.self)
+        .scope(.application)
     }
 }
