@@ -6,6 +6,7 @@
 //
 
 import Network
+import Persistence
 import Login
 import Post
 
@@ -17,7 +18,7 @@ enum DependencyRegistrationHelper {
         PostModule.registerDependencies()
     }
 
-    static func registerDatabase(id: Int) {
-
+    static func registerDatabase(userID: Int) {
+        PersistenceModule.registerDependencies(userID: userID)
     }
 }

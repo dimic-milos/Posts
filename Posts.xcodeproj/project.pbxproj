@@ -21,6 +21,7 @@
 		2B5CB43B2AAA208B00D525CD /* Post in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43A2AAA208B00D525CD /* Post */; };
 		2B5CB43D2AAA428100D525CD /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43C2AAA428100D525CD /* UI */; };
 		2B5CB43F2AAAEE4800D525CD /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43E2AAAEE4800D525CD /* Network */; };
+		2B5CB4412AAB19B300D525CD /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4402AAB19B300D525CD /* Persistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5CB4412AAB19B300D525CD /* Persistence in Frameworks */,
 				2B5CB43B2AAA208B00D525CD /* Post in Frameworks */,
 				2B5CB43F2AAAEE4800D525CD /* Network in Frameworks */,
 				2B5CB4352AAA094300D525CD /* Resolver in Frameworks */,
@@ -243,6 +245,7 @@
 				2B5CB43A2AAA208B00D525CD /* Post */,
 				2B5CB43C2AAA428100D525CD /* UI */,
 				2B5CB43E2AAAEE4800D525CD /* Network */,
+				2B5CB4402AAB19B300D525CD /* Persistence */,
 			);
 			productName = Posts;
 			productReference = 2B076A4A2AA9801C0080616D /* Posts.app */;
@@ -654,6 +657,10 @@
 		2B5CB43E2AAAEE4800D525CD /* Network */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Network;
+		};
+		2B5CB4402AAB19B300D525CD /* Persistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Persistence;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

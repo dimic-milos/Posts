@@ -40,7 +40,7 @@ import PostAPI
     func handle(loginCoordinatorAction: LoginCoordinatorAction) {
         switch loginCoordinatorAction {
         case .didLogin(let userID):
-            DependencyRegistrationHelper.registerDatabase(id: userID)
+            DependencyRegistrationHelper.registerDatabase(userID: userID)
             self.startPostFlow()
         }
     }
