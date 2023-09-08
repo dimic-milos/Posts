@@ -22,7 +22,6 @@ actor PersistenceService {
             for: PostDBModel.self,
             configurations: ModelConfiguration("\(userID)", cloudKitDatabase: .none)
         )
-        print("MiDi 12.12.2016", #file, #line, #function, self.container.configurations.count)
     }
 }
 
