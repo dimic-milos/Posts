@@ -14,7 +14,7 @@ final class AllPostsViewModel: PostsBaseViewModel {
             do {
                 self.set(state: .loading)
                 let posts = try await self.manager.fetchPosts(userID: 1)
-                let favourites = try self.manager.fetchFavourites(ids: posts.map(\.id))
+                let favourites = try await self.manager.fetchFavourites(ids: posts.map(\.id))
                 print("MiDi 12.12.2016", #file, #line, #function, posts)
                 print("MiDi 12.12.2016", #file, #line, #function, favourites)
                 self.set(state: .success)

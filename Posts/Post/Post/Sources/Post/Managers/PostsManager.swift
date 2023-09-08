@@ -12,7 +12,7 @@ import Models
 protocol PostsManagerProtocol {
 
     func fetchPosts(userID: Int) async throws -> [PostModel]
-    func fetchFavourites(ids: [Int]?) throws -> [PostModel]
+    func fetchFavourites(ids: [Int]?) async throws -> [PostModel]
 }
 
 final class PostsManager {
@@ -31,8 +31,8 @@ extension PostsManager: PostsManagerProtocol {
             .map { try $0.asPresentationModel }
     }
 
-    func fetchFavourites(ids: [Int]?) throws -> [PostModel] {
-        try self.service.fetchFavourites(ids: ids)
+    func fetchFavourites(ids: [Int]?) async throws -> [PostModel] {
+        try await self.service.fetchFavourites(ids: ids)
             .map { try $0.asPresentationModel }
     }
 }

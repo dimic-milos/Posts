@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 import Resolver
 import Network
 import Persistence
@@ -14,7 +15,7 @@ import Models
 protocol PostsServiceProtocol {
 
     func fetchPosts(userID: Int) async throws -> [PostAPIModel]
-    func fetchFavourites(ids: [Int]?) -> [PostDBModel]
+    func fetchFavourites(ids: [Int]?) async throws -> [PostDBModel]
 }
 
 final class PostsService {
@@ -41,7 +42,23 @@ extension PostsService: PostsServiceProtocol {
         )
     }
 
-    func fetchFavourites(ids: [Int]?) -> [PostDBModel] {
-        []
+    func fetchFavourites(ids: [Int]?) async throws -> [PostDBModel] {
+        let sort = SortDescriptor<PostDBModel>(\.id)
+
+        let predicate: Predicate<PostDBModel>? = {
+            if let ids {
+                return #Predicate<PostDBModel> {
+                    ids.contains($0.id)
+                }
+            } else {
+               return nil
+           }
+        }()
+
+        let descriptor = FetchDescriptor<PostDBModel>(
+            predicate: predicate,
+            sortBy: [sort]
+        )
+        return try await self.persistence.fetch(descriptor: descriptor)
     }
 }

@@ -13,7 +13,7 @@ final class FavouritePostsViewModel: PostsBaseViewModel {
         Task {
             do {
                 self.set(state: .loading)
-                let posts = try self.manager.fetchFavourites(ids: nil)
+                let posts = try await self.manager.fetchFavourites(ids: nil)
                 print("MiDi 12.12.2016", #file, #line, #function, posts)
                 self.set(state: .success)
                 await MainActor.run {
