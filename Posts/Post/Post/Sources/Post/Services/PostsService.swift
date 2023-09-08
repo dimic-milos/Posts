@@ -12,7 +12,7 @@ import Models
 
 protocol PostsServiceProtocol {
 
-    func fetchPosts(userID: Int) async throws -> PostAPIModel
+    func fetchPosts(userID: Int) async throws -> [PostAPIModel]
 }
 
 final class PostsService {
@@ -24,7 +24,7 @@ final class PostsService {
 
 extension PostsService: PostsServiceProtocol {
 
-    func fetchPosts(userID: Int) async throws -> PostAPIModel {
+    func fetchPosts(userID: Int) async throws -> [PostAPIModel] {
         let model = PostAPIRequestModel(userID: userID)
         let request = NetworkServiceRequest(
             path: .posts,
@@ -34,7 +34,7 @@ extension PostsService: PostsServiceProtocol {
 
         return try await self.network.execute(
             request: request,
-            type: PostAPIModel.self
+            type: [PostAPIModel].self
         )
     }
 }
