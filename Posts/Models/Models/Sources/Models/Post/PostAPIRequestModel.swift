@@ -11,11 +11,11 @@ public struct PostAPIRequestModel: Encodable {
 
     // MARK: - Private properties
 
-    private let userId: Int
+    private let userId: String
 
     // MARK: - Init
 
     public init(userID: Int) {
-        self.userId = userID
+        self.userId = String(userID)
     }
 }
