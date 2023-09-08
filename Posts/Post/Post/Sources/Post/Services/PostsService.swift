@@ -13,6 +13,7 @@ import Models
 protocol PostsServiceProtocol {
 
     func fetchPosts(userID: Int) async throws -> [PostAPIModel]
+    func fetchFavouritePosts() -> [PostDBModel]
 }
 
 final class PostsService {
@@ -36,5 +37,9 @@ extension PostsService: PostsServiceProtocol {
             request: request,
             type: [PostAPIModel].self
         )
+    }
+
+    func fetchFavouritePosts() -> [PostDBModel] {
+        []
     }
 }
