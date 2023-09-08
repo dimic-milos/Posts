@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
-//model
+@Model
 final public class PostDBModel {
 
     // MARK: - Public properties

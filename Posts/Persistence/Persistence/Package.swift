@@ -11,8 +11,29 @@ let package = Package(
             name: "Persistence",
             targets: ["Persistence"]),
     ],
+    dependencies: [
+        .models
+    ],
     targets: [
         .target(
-            name: "Persistence"),
+            name: "Persistence",
+            dependencies: [
+                .models
+            ]
+        )
     ]
 )
+// MARK: - Model
+
+extension Package.Dependency {
+
+    static var models: Package.Dependency = .package(path: "../Models")
+}
+
+extension Target.Dependency {
+
+    static var models: Target.Dependency = .product(
+        name: "Models",
+        package: "Models"
+    )
+}
