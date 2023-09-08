@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FlowStacks
 import LoginAPI
 
 struct LoginCoordinatorView: LoginCoordinatorViewProtocol {
@@ -23,6 +24,12 @@ struct LoginCoordinatorView: LoginCoordinatorViewProtocol {
     // MARK: - Body
     
     var body: some View {
-        Text("LoginCoordinatorView")
+        Router(self.$viewModel.routes) { screen, _ in
+            switch screen {
+            case .login(let viewModel):
+                LoginView(viewModel: viewModel)
+            }
+        }
+
     }
 }

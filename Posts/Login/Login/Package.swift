@@ -13,14 +13,20 @@ let package = Package(
         )
     ],
     dependencies: [
+        .flowStacks,
         .resolver,
+        .global,
+        .ui,
         .loginAPI
     ],
     targets: [
         .target(
             name: "Login",
             dependencies: [
+                .flowStacks,
                 .resolver,
+                .global,
+                .ui,
                 .loginAPI
             ]
         )
@@ -31,6 +37,24 @@ let package = Package(
         )
     ]
 )
+
+// MARK: - FlowStacks
+
+extension Package.Dependency {
+
+    static var flowStacks: Package.Dependency = .package(
+        url: "https://github.com/johnpatrickmorgan/FlowStacks.git",
+        exact: "0.3.4"
+    )
+}
+
+extension Target.Dependency {
+
+    static var flowStacks: Target.Dependency = .product(
+        name: "FlowStacks",
+        package: "FlowStacks"
+    )
+}
 
 // MARK: - Resolver
 
@@ -47,6 +71,36 @@ extension Target.Dependency {
     static var resolver: Target.Dependency = .product(
         name: "Resolver",
         package: "Resolver"
+    )
+}
+
+// MARK: - Global
+
+extension Package.Dependency {
+
+    static var global: Package.Dependency = .package(path: "../Global")
+}
+
+extension Target.Dependency {
+
+    static var global: Target.Dependency = .product(
+        name: "Global",
+        package: "Global"
+    )
+}
+
+// MARK: - UI
+
+extension Package.Dependency {
+
+    static var ui: Package.Dependency = .package(path: "../UI")
+}
+
+extension Target.Dependency {
+
+    static var ui: Target.Dependency = .product(
+        name: "UI",
+        package: "UI"
     )
 }
 

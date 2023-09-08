@@ -10,7 +10,7 @@ import FlowStacks
 import Global
 import PostAPI
 
-@Observable final class PostCoordinatorViewModel:
+final class PostCoordinatorViewModel:
     BaseCoordinatorViewModel<PostCoordinatorViewModel.Screen>,
     PostCoordinatorViewModelProtocol
 {

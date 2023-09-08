@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-@Observable public final class ActionViewModel<Action> {
+public final class ActionViewModel<Action>: ObservableObject {
 
     // MARK: - Public properties
 
-    public var action: Action?
+    @Published public var action: Action?
 }
