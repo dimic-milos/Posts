@@ -12,7 +12,7 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 
     // MARK: - Private properties
 
-    @State private var viewModel: ViewModel
+    private var viewModel: ViewModel
 
     // MARK: - Init
 

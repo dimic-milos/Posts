@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Resolver
 import Global
 import UI
 
@@ -16,14 +17,16 @@ protocol PostsBaseViewModelProtocol: ContentStateObservable {
    func didTapPost(id: Int)
 }
 
-@Observable class PostsBaseViewModel: 
+class PostsBaseViewModel: 
     BaseActionViewModel<PostsBaseViewModel.Action>,
     PostsBaseViewModelProtocol
 {
-    
+
     // MARK: - Public properties
 
     var state: ContentState = .success
+
+    @Injected private(set) var manager: PostsManagerProtocol
 
     // MARK: - API
 

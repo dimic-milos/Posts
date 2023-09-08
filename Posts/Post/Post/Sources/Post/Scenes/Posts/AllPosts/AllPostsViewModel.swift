@@ -6,11 +6,8 @@
 //
 
 import Foundation
-import Resolver
 
 final class AllPostsViewModel: PostsBaseViewModel {
-
-    @Injected private var manager: PostsManagerProtocol
 
     override func load() {
         print("MiDi 12.12.2016", #file, #line, #function)
