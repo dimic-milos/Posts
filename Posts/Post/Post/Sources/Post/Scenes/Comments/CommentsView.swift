@@ -23,19 +23,19 @@ struct CommentsView<ViewModel: CommentsViewModelProtocol>: View {
     // MARK: - Body
 
     var body: some View {
-        VStack(spacing: 16) {
-            PostView(
-                config: self.viewModel.config,
-                onTap: self.viewModel.handle(action:)
-            )
-            ContentStateView(source: self.viewModel) {
-                VStack {
-                    List(self.viewModel.comments, id: \.self) {
-                        CommentView(comment: $0)
-                    }
+        ContentStateView(source: self.viewModel) {
+            VStack(spacing: 16) {
+                PostView(
+                    config: self.viewModel.config,
+                    useCase: .favourite,
+                    onTap: self.viewModel.handle(action:)
+                )
+                List(self.viewModel.comments, id: \.self) {
+                    CommentView(comment: $0)
                 }
             }
         }
+
         .padding()
         .onFirstAppear {
             self.viewModel.load()

@@ -14,6 +14,7 @@ struct PostView: View {
     // MARK: - Public properties
 
     let config: PostConfig
+    let useCase: UseCase
     let onTap: Completion<ModelAction>
 
     // MARK: - Body
@@ -37,13 +38,14 @@ private extension PostView {
             },
             label: {
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(self.config.model.title)
+                    Text(self.config.model.title).bold()
                     Text(self.config.model.body)
                 }
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         )
+        .disabled(self.useCase == .favourite)
     }
 
     var starView: some View {
@@ -51,6 +53,15 @@ private extension PostView {
             .onTapGesture {
                 self.onTap(.init(action: .didTapStar, config: self.config))
             }
+    }
+}
+
+extension PostView {
+
+    enum UseCase {
+
+        case posts
+        case favourite
     }
 }
 

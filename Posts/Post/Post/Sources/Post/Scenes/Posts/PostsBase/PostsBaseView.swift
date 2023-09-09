@@ -41,7 +41,11 @@ private extension PostsBaseView {
             Text("No Posts Yet")
         } else {
             List(self.viewModel.configs, id: \.self) {
-                PostView(config: $0, onTap: self.viewModel.handle(action:))
+                PostView(
+                    config: $0,
+                    useCase: .posts,
+                    onTap: self.viewModel.handle(action:)
+                )
             }
         }
     }
