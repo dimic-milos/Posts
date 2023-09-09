@@ -19,7 +19,8 @@ let package = Package(
         .network,
         .persistence,
         .models,
-        .postAPI
+        .postAPI,
+        .testable
     ],
     targets: [
         .target(
@@ -37,7 +38,10 @@ let package = Package(
         ),
         .testTarget(
             name: "PostTests",
-            dependencies: ["Post"]
+            dependencies: [
+                "Post",
+                .testable
+            ]
         )
     ]
 )
@@ -166,5 +170,20 @@ extension Target.Dependency {
     static var postAPI: Target.Dependency = .product(
         name: "PostAPI",
         package: "PostAPI"
+    )
+}
+
+// MARK: - Testable
+
+extension Package.Dependency {
+
+    static var testable: Package.Dependency = .package(path: "../Testable")
+}
+
+extension Target.Dependency {
+
+    static var testable: Target.Dependency = .product(
+        name: "Testable",
+        package: "Testable"
     )
 }

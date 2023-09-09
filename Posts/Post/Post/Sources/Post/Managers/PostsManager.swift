@@ -8,13 +8,7 @@
 import Foundation
 import Resolver
 import Models
-
-protocol PostsManagerProtocol {
-
-    func fetchPosts(userID: Int) async throws -> [PostModel]
-    func fetchFavourites(ids: [Int]?) async throws -> [PostModel]
-    func updateFavourite(model: PostModel) async throws
-}
+import PostAPI
 
 final class PostsManager {
 

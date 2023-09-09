@@ -9,9 +9,33 @@ let package = Package(
     products: [
         .library(
             name: "PostAPI",
-            targets: ["PostAPI"]),
+            targets: ["PostAPI"]
+        )
+    ],
+    dependencies: [
+        .models
     ],
     targets: [
-        .target(name: "PostAPI")
+        .target(
+            name: "PostAPI",
+            dependencies: [
+                .models
+            ]
+        )
     ]
 )
+
+// MARK: - Model
+
+extension Package.Dependency {
+
+    static var models: Package.Dependency = .package(path: "../Models")
+}
+
+extension Target.Dependency {
+
+    static var models: Target.Dependency = .product(
+        name: "Models",
+        package: "Models"
+    )
+}

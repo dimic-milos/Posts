@@ -11,6 +11,7 @@ import Resolver
 import Global
 import Models
 import UI
+import PostAPI
 
 protocol PostsBaseViewModelProtocol: ContentStateObservable {
 

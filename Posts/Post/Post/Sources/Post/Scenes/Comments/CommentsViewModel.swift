@@ -10,6 +10,7 @@ import Resolver
 import UI
 import Models
 import Global
+import PostAPI
 
 protocol CommentsViewModelProtocol: ContentStateObservable {
 

@@ -1,3 +1,10 @@
+//
+//  File.swift
+//  
+//
+//  Created by Milos Dimic on 09.09.23.
+//
+
 import XCTest
 
 public extension XCTestExpectation {
@@ -8,12 +15,5 @@ public extension XCTestExpectation {
 
     static func asyncOperation() -> XCTestExpectation {
         XCTestExpectation(description: "Async Operation")
-    }
-}
-
-public extension XCTestCase {
-
-    func wait(for expectation: XCTestExpectation, timeout: TimeInterval = 1) {
-        self.wait(for: [expectation], timeout: timeout)
     }
 }
