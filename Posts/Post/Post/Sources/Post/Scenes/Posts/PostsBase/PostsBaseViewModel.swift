@@ -47,16 +47,19 @@ class PostsBaseViewModel:
         fatalError("Override")
     }
 
+    func update(model: PostModel) {
+        fatalError("Override")
+    }
+
     final func handle(action: ModelAction) {
         switch action.action {
         case .didTapText:
-            print("MiDi 12.12.2016", #file, #line, #function)
             self.actionViewModel.action = .didTapPost(id: action.model.id)
         case .didTapStar:
-            print("MiDi 12.12.2016", #file, #line, #function)
             Task {
                 do {
                     try await self.manager.updateFavourite(model: action.model)
+                    self.update(model: action.model)
                 } catch {
                     print("MiDi 12.12.2016", #file, #line, #function, error)
                 }

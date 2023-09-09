@@ -26,7 +26,7 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
         ContentStateView(source: self.viewModel) {
             self.content
         }
-        .onFirstAppear {
+        .onAppear {
             self.viewModel.load()
         }
     }
@@ -36,9 +36,13 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 
 private extension PostsBaseView {
 
-    var content: some View {
-        List(self.viewModel.postConfigs, id: \.self) {
-            PostView(config: $0, onTap: self.viewModel.handle(action:))
+    @ViewBuilder var content: some View {
+        if self.viewModel.postConfigs.isEmpty {
+            Text("No Posts Yet")
+        } else {
+            List(self.viewModel.postConfigs, id: \.self) {
+                PostView(config: $0, onTap: self.viewModel.handle(action:))
+            }
         }
     }
 }

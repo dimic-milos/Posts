@@ -19,7 +19,7 @@ struct PostView: View {
     // MARK: - Body
 
     var body: some View {
-        HStack {
+        HStack(spacing: 24) {
             self.postTextContentView
             self.starView
         }
@@ -36,10 +36,11 @@ private extension PostView {
                 self.onTap(.init(action: .didTapText, model: self.config.model))
             },
             label: {
-                VStack {
+                VStack(alignment: .leading, spacing: 16) {
                     Text(self.config.model.title)
                     Text(self.config.model.body)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         )
     }
