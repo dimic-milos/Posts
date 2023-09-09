@@ -27,7 +27,7 @@ final class LoginViewModel:
 
 extension LoginViewModel {
 
-    enum Action {
+    enum Action: Equatable {
 
         case didTapLogin(userID: Int)
     }

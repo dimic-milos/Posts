@@ -17,7 +17,8 @@ let package = Package(
         .resolver,
         .global,
         .ui,
-        .loginAPI
+        .loginAPI,
+        .testable
     ],
     targets: [
         .target(
@@ -33,7 +34,10 @@ let package = Package(
         ,
         .testTarget(
             name: "LoginTests",
-            dependencies: ["Login"]
+            dependencies: [
+                "Login",
+                .testable
+            ]
         )
     ]
 )
@@ -117,5 +121,21 @@ extension Target.Dependency {
     static var loginAPI: Target.Dependency = .product(
         name: "LoginAPI",
         package: "LoginAPI"
+    )
+}
+
+
+// MARK: - Testable
+
+extension Package.Dependency {
+
+    static var testable: Package.Dependency = .package(path: "../Testable")
+}
+
+extension Target.Dependency {
+
+    static var testable: Target.Dependency = .product(
+        name: "Testable",
+        package: "Testable"
     )
 }
