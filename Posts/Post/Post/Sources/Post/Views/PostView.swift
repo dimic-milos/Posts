@@ -33,13 +33,14 @@ private extension PostView {
     var postTextContentView: some View {
         Button(
             action: {
-                self.onTap(.init(action: .didTapText, model: self.config.model))
+                self.onTap(.init(action: .didTapText, config: self.config))
             },
             label: {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(self.config.model.title)
                     Text(self.config.model.body)
                 }
+                .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         )
@@ -48,7 +49,7 @@ private extension PostView {
     var starView: some View {
         Image(systemName: self.config.isFavourite ? "star.fill" : "star")
             .onTapGesture {
-                self.onTap(.init(action: .didTapStar, model: self.config.model))
+                self.onTap(.init(action: .didTapStar, config: self.config))
             }
     }
 }
@@ -69,5 +70,5 @@ enum TapAction {
 struct ModelAction {
 
     let action: TapAction
-    let model: PostModel
+    let config: PostConfig
 }

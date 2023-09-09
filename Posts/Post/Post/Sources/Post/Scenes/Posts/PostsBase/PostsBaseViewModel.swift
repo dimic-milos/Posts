@@ -5,7 +5,7 @@
 //  Created by Milos Dimic on 07.09.23.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 import Resolver
 import Global
@@ -14,7 +14,7 @@ import UI
 
 protocol PostsBaseViewModelProtocol: ContentStateObservable {
 
-    var postConfigs: [PostConfig] { get }
+    var configs: [PostConfig] { get }
 
     func load()
     func handle(action: ModelAction)
@@ -30,7 +30,7 @@ class PostsBaseViewModel:
     var state: ContentState = .loading
     let userID: Int
 
-    @Published var postConfigs: [PostConfig] = []
+    @Published var configs: [PostConfig] = []
 
     @Injected private(set) var manager: PostsManagerProtocol
 
@@ -54,12 +54,13 @@ class PostsBaseViewModel:
     final func handle(action: ModelAction) {
         switch action.action {
         case .didTapText:
-            self.actionViewModel.action = .didTapPost(id: action.model.id)
+            self.actionViewModel.action = .didTapPost(config: action.config)
         case .didTapStar:
             Task {
                 do {
-                    try await self.manager.updateFavourite(model: action.model)
-                    self.update(model: action.model)
+                    let model = action.config.model
+                    try await self.manager.updateFavourite(model: model)
+                    self.update(model: model)
                 } catch {
                     print("MiDi 12.12.2016", #file, #line, #function, error)
                 }
@@ -75,6 +76,6 @@ extension PostsBaseViewModel {
 
     enum Action {
 
-        case didTapPost(id: Int)
+        case didTapPost(config: PostConfig)
     }
 }

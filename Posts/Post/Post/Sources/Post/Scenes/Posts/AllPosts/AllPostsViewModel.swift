@@ -14,12 +14,12 @@ final class AllPostsViewModel: PostsBaseViewModel {
         Task {
             do {
                 self.set(state: .loading)
-                
+
                 let posts: [PostModel] = try await {
-                    if self.postConfigs.isEmpty {
+                    if self.configs.isEmpty {
                         return try await self.manager.fetchPosts(userID: self.userID)
                     } else {
-                        return self.postConfigs.map(\.model)
+                        return self.configs.map(\.model)
                     }
                 }()
 
@@ -27,7 +27,7 @@ final class AllPostsViewModel: PostsBaseViewModel {
                 self.set(state: .success)
 
                 await MainActor.run {
-                    self.postConfigs = posts.map {
+                    self.configs = posts.map {
                         .init(model: $0, isFavourite: favourites.contains($0))
                     }
                 }
@@ -38,7 +38,7 @@ final class AllPostsViewModel: PostsBaseViewModel {
     }
 
     override func update(model: PostModel) {
-        self.postConfigs = self.postConfigs.map {
+        self.configs = self.configs.map {
             if $0.model == model {
                 return .init(model: model, isFavourite: !$0.isFavourite)
             } else {

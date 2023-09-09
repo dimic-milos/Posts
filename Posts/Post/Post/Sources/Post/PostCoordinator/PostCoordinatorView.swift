@@ -37,8 +37,8 @@ private extension PostCoordinatorView {
             switch screen {
             case .posts(let viewModel):
                 PostsContainerView(viewModel: viewModel)
-            case .comments:
-                Text("Comments")
+            case .comments(let viewModel):
+                CommentsView(viewModel: viewModel)
             }
         }
     }

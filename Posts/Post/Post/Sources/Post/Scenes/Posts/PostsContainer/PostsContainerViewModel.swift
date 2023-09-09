@@ -46,7 +46,7 @@ extension PostsContainerViewModel {
 
     enum Action {
      
-        case didTapPost(id: Int)
+        case didTapPost(config: PostConfig)
     }
 }
 
@@ -60,8 +60,8 @@ private extension PostsContainerViewModel {
                 return
             }
             switch action {
-            case .didTapPost(let id):
-                self.actionViewModel.action = .didTapPost(id: id)
+            case .didTapPost(let config):
+                self.actionViewModel.action = .didTapPost(config: config)
             }
         }
         .store(in: &self.cancellables)
@@ -73,8 +73,8 @@ private extension PostsContainerViewModel {
                 return
             }
             switch action {
-            case .didTapPost(let id):
-                self.actionViewModel.action = .didTapPost(id: id)
+            case .didTapPost(let config):
+                self.actionViewModel.action = .didTapPost(config: config)
             }
         }
         .store(in: &self.cancellables)

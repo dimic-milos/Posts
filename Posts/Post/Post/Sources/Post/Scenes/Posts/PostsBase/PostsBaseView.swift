@@ -37,10 +37,10 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 private extension PostsBaseView {
 
     @ViewBuilder var content: some View {
-        if self.viewModel.postConfigs.isEmpty {
+        if self.viewModel.configs.isEmpty {
             Text("No Posts Yet")
         } else {
-            List(self.viewModel.postConfigs, id: \.self) {
+            List(self.viewModel.configs, id: \.self) {
                 PostView(config: $0, onTap: self.viewModel.handle(action:))
             }
         }

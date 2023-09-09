@@ -12,7 +12,7 @@ import Global
 import LoginAPI
 import PostAPI
 
-@Observable final class AppCoordinatorViewModel: BaseCoordinatorViewModel<AppCoordinatorViewModel.Screen> {
+final class AppCoordinatorViewModel: BaseCoordinatorViewModel<AppCoordinatorViewModel.Screen> {
 
     // MARK: - Private properties
 

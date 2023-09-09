@@ -9,6 +9,8 @@ import Foundation
 
 public struct PostModel: Hashable {
 
+    // MARK: - Public properties
+    
     public let id: Int
     public let title: String
     public let body: String

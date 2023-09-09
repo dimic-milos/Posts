@@ -28,6 +28,8 @@ final class PostsService {
     @Injected private var persistence: PersistenceServiceProtocol
 }
 
+// MARK: - PostsServiceProtocol
+
 extension PostsService: PostsServiceProtocol {
 
     func fetchPosts(userID: Int) async throws -> [PostAPIModel] {

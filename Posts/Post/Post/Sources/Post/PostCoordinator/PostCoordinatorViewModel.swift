@@ -5,7 +5,7 @@
 //  Created by Milos Dimic on 07.09.23.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 import FlowStacks
 import Global
@@ -19,16 +19,29 @@ final class PostCoordinatorViewModel:
     // MARK: - Private properties
 
     private var postsContainerViewModel: PostsContainerViewModel?
+    private var commentsViewModel: CommentsViewModel?
 
     // MARK: - Init
     
     init(userID: Int) {
         super.init()
 
+        self.startPostsFlow(userID: userID)
+    }
+
+    // MARK: - Helpers
+
+    private func startPostsFlow(userID: Int) {
         let postsContainerViewModel = PostsContainerViewModel(userID: userID)
         self.postsContainerViewModel = postsContainerViewModel
         self.routes = [.root(.posts(viewModel: postsContainerViewModel))]
         self.subscribeToPostsContainerViewModelAction()
+    }
+
+    private func startCommnetsFlow(config: PostConfig) {
+        let commentsViewModel = CommentsViewModel(config: config)
+        self.commentsViewModel = commentsViewModel
+        self.routes.push(.comments(viewModel: commentsViewModel))
     }
 }
 
@@ -39,7 +52,7 @@ extension PostCoordinatorViewModel {
     enum Screen {
 
         case posts(viewModel: PostsContainerViewModel)
-        case comments
+        case comments(viewModel: CommentsViewModel)
     }
 }
 
@@ -53,8 +66,8 @@ private extension PostCoordinatorViewModel {
                 return
             }
             switch action {
-            case .didTapPost(let id):
-                self.routes.presentSheet(.comments)
+            case .didTapPost(let config):
+                self.startCommnetsFlow(config: config)
             }
         }
         .store(in: &self.cancellables)

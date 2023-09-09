@@ -18,7 +18,7 @@ final class FavouritePostsViewModel: PostsBaseViewModel {
                 self.set(state: .success)
 
                 await MainActor.run {
-                    self.postConfigs = posts.map { .init(model: $0, isFavourite: true) }
+                    self.configs = posts.map { .init(model: $0, isFavourite: true) }
                 }
             } catch {
                 self.set(state: .failed)
@@ -27,6 +27,6 @@ final class FavouritePostsViewModel: PostsBaseViewModel {
     }
 
     override func update(model: PostModel) {
-        self.postConfigs = self.postConfigs.filter { $0.model != model }
+        self.configs = self.configs.filter { $0.model != model }
     }
 }
