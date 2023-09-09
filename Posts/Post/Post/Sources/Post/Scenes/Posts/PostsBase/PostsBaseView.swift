@@ -38,15 +38,23 @@ private extension PostsBaseView {
 
     @ViewBuilder var content: some View {
         if self.viewModel.configs.isEmpty {
-            Text("No Posts Yet")
+            self.emptyStateView
         } else {
-            List(self.viewModel.configs, id: \.self) {
-                PostView(
-                    config: $0,
-                    useCase: .posts,
-                    onTap: self.viewModel.handle(action:)
-                )
-            }
+            self.postsView
+        }
+    }
+
+    var emptyStateView: some View {
+        Text("No Posts Yet")
+    }
+
+    var postsView: some View {
+        List(self.viewModel.configs, id: \.self) {
+            PostView(
+                config: $0,
+                useCase: .posts,
+                onTap: self.viewModel.handle(action:)
+            )
         }
     }
 }

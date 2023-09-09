@@ -57,14 +57,9 @@ class PostsBaseViewModel:
             self.actionViewModel.action = .didTapPost(config: action.config)
         case .didTapStar:
             Task {
-                do {
-                    let model = action.config.model
-                    try await self.manager.updateFavourite(model: model)
-                    self.update(model: model)
-                } catch {
-                    print("MiDi 12.12.2016", #file, #line, #function, error)
-                }
-
+                let model = action.config.model
+                try? await self.manager.updateFavourite(model: model)
+                self.update(model: model)
             }
         }
     }

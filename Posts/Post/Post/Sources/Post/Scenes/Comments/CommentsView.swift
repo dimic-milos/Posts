@@ -24,21 +24,37 @@ struct CommentsView<ViewModel: CommentsViewModelProtocol>: View {
 
     var body: some View {
         ContentStateView(source: self.viewModel) {
-            VStack(spacing: 16) {
-                PostView(
-                    config: self.viewModel.config,
-                    useCase: .favourite,
-                    onTap: self.viewModel.handle(action:)
-                )
-                List(self.viewModel.comments, id: \.self) {
-                    CommentView(comment: $0)
-                }
-            }
+            self.content
         }
-
-        .padding()
         .onFirstAppear {
             self.viewModel.load()
+        }
+    }
+}
+
+// MARK: - Views
+
+private extension CommentsView {
+
+    var content: some View {
+        VStack(spacing: 16) {
+            self.postView
+            self.commentsView
+        }
+        .padding()
+    }
+
+    var postView: some View {
+        PostView(
+            config: self.viewModel.config,
+            useCase: .favourite,
+            onTap: self.viewModel.handle(action:)
+        )
+    }
+
+    var commentsView: some View {
+        List(self.viewModel.comments, id: \.self) {
+            CommentView(comment: $0)
         }
     }
 }

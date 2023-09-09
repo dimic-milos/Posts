@@ -26,16 +26,37 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     // MARK: - Body
 
     var body: some View {
-        VStack {
-            TextField("Please enter user ID", text: self.$text)
-                .keyboardType(.numberPad)
-                .focused(self.$isFocused)
-            Button("Login") {
-                Int(self.text).map(self.viewModel.login(userID:))
+        self.content
+            .onFirstAppear {
+                self.isFocused = true
             }
+    }
+}
+
+// MARK: - Views
+
+private extension LoginView {
+
+    var content: some View {
+        VStack(spacing: 48) {
+            self.textFieldView
+            self.loginButtonView
         }
-        .onFirstAppear {
-            self.isFocused = true
+        .padding()
+    }
+
+    var textFieldView: some View {
+        TextField("Please enter user ID", text: self.$text)
+            .padding()
+            .border(.black)
+            .keyboardType(.numberPad)
+            .focused(self.$isFocused)
+    }
+
+    var loginButtonView: some View {
+        Button("Login") {
+            Int(self.text).map(self.viewModel.login(userID:))
         }
+        .bold()
     }
 }

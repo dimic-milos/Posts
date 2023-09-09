@@ -20,10 +20,7 @@ struct PostView: View {
     // MARK: - Body
 
     var body: some View {
-        HStack(spacing: 24) {
-            self.postTextContentView
-            self.starView
-        }
+        self.content
     }
 }
 
@@ -31,25 +28,33 @@ struct PostView: View {
 
 private extension PostView {
 
-    var postTextContentView: some View {
+    var content: some View {
+        HStack(spacing: 24) {
+            self.postTextButtonView
+            self.starView
+        }
+    }
+
+    var postTextButtonView: some View {
         Button(
-            action: {
-                self.onTap(.init(action: .didTapText, config: self.config))
-            },
-            label: {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text(self.config.model.title).bold()
-                    Text(self.config.model.body)
-                }
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
+            action: { self.onTap(.init(action: .didTapText, config: self.config)) },
+            label: { self.postTextContentView }
         )
         .disabled(self.useCase == .favourite)
     }
 
+    var postTextContentView: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text(self.config.model.title).bold()
+            Text(self.config.model.body)
+        }
+        .multilineTextAlignment(.leading)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
     var starView: some View {
         Image(systemName: self.config.isFavourite ? "star.fill" : "star")
+            .foregroundStyle(.yellow)
             .onTapGesture {
                 self.onTap(.init(action: .didTapStar, config: self.config))
             }
@@ -63,23 +68,16 @@ extension PostView {
         case posts
         case favourite
     }
-}
 
+    enum TapAction {
 
-struct PostConfig: Hashable {
-
-    let model: PostModel
-    let isFavourite: Bool
-}
-
-enum TapAction {
-
-    case didTapText
-    case didTapStar
+        case didTapText
+        case didTapStar
+    }
 }
 
 struct ModelAction {
 
-    let action: TapAction
+    let action: PostView.TapAction
     let config: PostConfig
 }
