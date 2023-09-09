@@ -17,6 +17,7 @@ let package = Package(
         .global,
         .ui,
         .network,
+        .persistence,
         .models,
         .postAPI
     ],
@@ -29,6 +30,7 @@ let package = Package(
                 .global,
                 .ui,
                 .network,
+                .persistence,
                 .models,
                 .postAPI
             ]
@@ -119,6 +121,21 @@ extension Target.Dependency {
     static var network: Target.Dependency = .product(
         name: "Network",
         package: "Network"
+    )
+}
+
+// MARK: - Persistence
+
+extension Package.Dependency {
+
+    static var persistence: Package.Dependency = .package(path: "../Persistence")
+}
+
+extension Target.Dependency {
+
+    static var persistence: Target.Dependency = .product(
+        name: "Persistence",
+        package: "Persistence"
     )
 }
 
