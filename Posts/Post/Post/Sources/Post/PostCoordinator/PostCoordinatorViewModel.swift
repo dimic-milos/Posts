@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import FlowStacks
 import Global
 import PostAPI
@@ -27,6 +28,7 @@ final class PostCoordinatorViewModel:
         let postsContainerViewModel = PostsContainerViewModel(userID: userID)
         self.postsContainerViewModel = postsContainerViewModel
         self.routes = [.root(.posts(viewModel: postsContainerViewModel))]
+        self.subscribeToPostsContainerViewModelAction()
     }
 }
 
@@ -38,5 +40,23 @@ extension PostCoordinatorViewModel {
 
         case posts(viewModel: PostsContainerViewModel)
         case comments
+    }
+}
+
+// MARK: - Subscribe
+
+private extension PostCoordinatorViewModel {
+
+    func subscribeToPostsContainerViewModelAction() {
+        self.postsContainerViewModel?.actionViewModel.$action.sink { [weak self] in
+            guard let self, let action = $0 else {
+                return
+            }
+            switch action {
+            case .didTapPost(let id):
+                self.routes.presentSheet(.comments)
+            }
+        }
+        .store(in: &self.cancellables)
     }
 }

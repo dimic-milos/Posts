@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import Global
 
 protocol PostsContainerViewModelProtocol: ObservableObject {
@@ -27,12 +28,15 @@ final class PostsContainerViewModel:
     // MARK: - Private properties
 
     private let userID: Int
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init
     
     init(userID: Int) {
         self.userID = userID
         super.init()
+        self.subscribeToAllPostsViewModelAction()
+        self.subscribeToFavouritePostsViewModelAction()
     }
 }
 
@@ -43,5 +47,36 @@ extension PostsContainerViewModel {
     enum Action {
      
         case didTapPost(id: Int)
+    }
+}
+
+// MARK: - Subscribe
+
+private extension PostsContainerViewModel {
+
+    func subscribeToAllPostsViewModelAction() {
+        self.allPostsViewModel.actionViewModel.$action.sink { [weak self] in
+            guard let self, let action = $0 else {
+                return
+            }
+            switch action {
+            case .didTapPost(let id):
+                self.actionViewModel.action = .didTapPost(id: id)
+            }
+        }
+        .store(in: &self.cancellables)
+    }
+
+    func subscribeToFavouritePostsViewModelAction() {
+        self.favouritePostsViewModel.actionViewModel.$action.sink { [weak self] in
+            guard let self, let action = $0 else {
+                return
+            }
+            switch action {
+            case .didTapPost(let id):
+                self.actionViewModel.action = .didTapPost(id: id)
+            }
+        }
+        .store(in: &self.cancellables)
     }
 }
