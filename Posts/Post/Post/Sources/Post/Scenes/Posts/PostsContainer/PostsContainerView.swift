@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Assets
 
 struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
 
@@ -35,7 +36,7 @@ struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
     var posts: some View {
         PostsBaseView(viewModel: self.viewModel.allPostsViewModel)
             .tabItem {
-                Label("Posts", systemImage: "house")
+                Label(L10n.posts.localized, systemImage: "house")
             }
             .tag(Tab.posts)
     }
@@ -43,7 +44,7 @@ struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
     var favourites: some View {
         PostsBaseView(viewModel: self.viewModel.favouritePostsViewModel)
             .tabItem {
-                Label("Fav", systemImage: "star")
+                Label(L10n.favourites.localized, systemImage: "star")
             }
             .tag(Tab.favourites)
     }

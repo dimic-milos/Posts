@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UI
+import Assets
 
 struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
@@ -46,7 +47,7 @@ private extension LoginView {
     }
 
     var textFieldView: some View {
-        TextField("Please enter user ID", text: self.$text)
+        TextField(L10n.loginPrompt.localized, text: self.$text)
             .padding()
             .border(.black)
             .keyboardType(.numberPad)
@@ -54,7 +55,7 @@ private extension LoginView {
     }
 
     var loginButtonView: some View {
-        Button("Login") {
+        Button(L10n.login.localized) {
             Int(self.text).map(self.viewModel.login(userID:))
         }
         .bold()

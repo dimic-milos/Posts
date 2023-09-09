@@ -17,6 +17,7 @@ let package = Package(
         .resolver,
         .global,
         .ui,
+        .assets,
         .loginAPI,
         .testable
     ],
@@ -28,6 +29,7 @@ let package = Package(
                 .resolver,
                 .global,
                 .ui,
+                .assets,
                 .loginAPI
             ]
         )
@@ -108,6 +110,20 @@ extension Target.Dependency {
     )
 }
 
+// MARK: - Asset
+
+extension Package.Dependency {
+
+    static var assets: Package.Dependency = .package(path: "../Assets")
+}
+
+extension Target.Dependency {
+
+    static var assets: Target.Dependency = .product(
+        name: "Assets",
+        package: "Assets"
+    )
+}
 
 // MARK: - LoginAPI
 

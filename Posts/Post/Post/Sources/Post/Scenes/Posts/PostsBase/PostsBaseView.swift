@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UI
+import Assets
 
 struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 
@@ -45,7 +46,7 @@ private extension PostsBaseView {
     }
 
     var emptyStateView: some View {
-        Text("No Posts Yet")
+        Text(L10n.noPosts.localized)
     }
 
     var postsView: some View {

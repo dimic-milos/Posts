@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Assets
 
 public struct ContentStateView<Source: ContentStateObservable, Content: View>: View {
 
@@ -31,7 +32,7 @@ public struct ContentStateView<Source: ContentStateObservable, Content: View>: V
         case .loading:
             ProgressView()
         case .failed:
-            Text("Error")
+            Text(L10n.error.localized)
         case .success:
             self.content
         }

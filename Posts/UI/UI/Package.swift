@@ -13,13 +13,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        .global
+        .global,
+        .assets
     ],
     targets: [
         .target(
             name: "UI",
             dependencies: [
-                .global
+                .global,
+                .assets
             ]
         )
     ]
@@ -37,5 +39,20 @@ extension Target.Dependency {
     static var global: Target.Dependency = .product(
         name: "Global",
         package: "Global"
+    )
+}
+
+// MARK: - Asset
+
+extension Package.Dependency {
+
+    static var assets: Package.Dependency = .package(path: "../Assets")
+}
+
+extension Target.Dependency {
+
+    static var assets: Target.Dependency = .product(
+        name: "Assets",
+        package: "Assets"
     )
 }

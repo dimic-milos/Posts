@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UI
+import Assets
 
 struct CommentsView<ViewModel: CommentsViewModelProtocol>: View {
     
@@ -26,6 +27,7 @@ struct CommentsView<ViewModel: CommentsViewModelProtocol>: View {
         ContentStateView(source: self.viewModel) {
             self.content
         }
+        .navigationTitle(L10n.comments.localized)
         .onFirstAppear {
             self.viewModel.load()
         }

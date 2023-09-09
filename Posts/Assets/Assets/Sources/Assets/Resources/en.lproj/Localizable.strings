@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Milos Dimic on 09.09.23.
+  
+*/
+
+"login" = "Login";
+"error" = "Error";
+"posts" = "Posts";
+"favourites" = "Favourites";
+"comments" = "Comments";
+"loginPrompt" = "Please enter your user ID";
+"noPosts" = "No Posts Yet";

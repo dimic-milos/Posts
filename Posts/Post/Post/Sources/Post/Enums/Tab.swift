@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Assets
 
 enum Tab {
 
@@ -15,9 +16,9 @@ enum Tab {
     var navTitle: String {
         switch self {
         case .posts:
-            return "Posts"
+            return L10n.posts.localized
         case .favourites:
-            return "Favourites"
+            return L10n.favourites.localized
         }
     }
 }

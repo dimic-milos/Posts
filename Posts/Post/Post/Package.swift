@@ -19,6 +19,7 @@ let package = Package(
         .network,
         .persistence,
         .models,
+        .assets,
         .postAPI,
         .testable
     ],
@@ -33,6 +34,7 @@ let package = Package(
                 .network,
                 .persistence,
                 .models,
+                .assets,
                 .postAPI
             ]
         ),
@@ -155,6 +157,21 @@ extension Target.Dependency {
     static var models: Target.Dependency = .product(
         name: "Models",
         package: "Models"
+    )
+}
+
+// MARK: - Asset
+
+extension Package.Dependency {
+
+    static var assets: Package.Dependency = .package(path: "../Assets")
+}
+
+extension Target.Dependency {
+
+    static var assets: Target.Dependency = .product(
+        name: "Assets",
+        package: "Assets"
     )
 }
 
