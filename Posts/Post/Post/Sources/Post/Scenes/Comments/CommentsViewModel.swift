@@ -18,7 +18,7 @@ protocol CommentsViewModelProtocol: ContentStateObservable {
     var comments: [CommentModel] { get }
 
     func load()
-    func handleDidTapstar(config: PostConfig)
+    func handleDidTapStar(config: PostConfig)
 }
 
 final class CommentsViewModel: CommentsViewModelProtocol {
@@ -60,7 +60,7 @@ final class CommentsViewModel: CommentsViewModelProtocol {
         }
     }
 
-    func handleDidTapstar(config: PostConfig) {
+    func handleDidTapStar(config: PostConfig) {
         Task {
             do {
                 let model = config.model

@@ -49,7 +49,7 @@ private extension CommentsView {
             config: self.viewModel.config,
             useCase: .favourite,
             onTextTap: { _ in },
-            onStarTap: self.viewModel.handleDidTapstar(config:)
+            onStarTap: self.viewModel.handleDidTapStar(config:)
         )
     }
 
