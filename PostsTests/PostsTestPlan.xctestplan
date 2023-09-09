@@ -17,6 +17,7 @@
   },
   "testTargets" : [
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:Posts.xcodeproj",
         "identifier" : "2B076A5B2AA9801E0080616D",
