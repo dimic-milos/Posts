@@ -48,7 +48,8 @@ private extension CommentsView {
         PostView(
             config: self.viewModel.config,
             useCase: .favourite,
-            onTap: self.viewModel.handle(action:)
+            onTextTap: { _ in },
+            onStarTap: self.viewModel.handleDidTapstar(config:)
         )
     }
 

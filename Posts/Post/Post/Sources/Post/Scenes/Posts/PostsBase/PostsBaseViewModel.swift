@@ -17,7 +17,8 @@ protocol PostsBaseViewModelProtocol: ContentStateObservable {
     var configs: [PostConfig] { get }
 
     func load()
-    func handle(action: ModelAction)
+    func handleDidTapText(config: PostConfig)
+    func handleDidTapStar(config: PostConfig)
 }
 
 class PostsBaseViewModel: 
@@ -51,16 +52,15 @@ class PostsBaseViewModel:
         fatalError("Override")
     }
 
-    final func handle(action: ModelAction) {
-        switch action.action {
-        case .didTapText:
-            self.actionViewModel.action = .didTapPost(config: action.config)
-        case .didTapStar:
-            Task {
-                let model = action.config.model
-                try? await self.manager.updateFavourite(model: model)
-                self.update(model: model)
-            }
+    func handleDidTapText(config: PostConfig) {
+        self.actionViewModel.action = .didTapPost(config: config)
+    }
+
+    func handleDidTapStar(config: PostConfig) {
+        Task {
+            let model = config.model
+            try? await self.manager.updateFavourite(model: model)
+            self.update(model: model)
         }
     }
 }

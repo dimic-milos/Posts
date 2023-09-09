@@ -53,7 +53,8 @@ private extension PostsBaseView {
             PostView(
                 config: $0,
                 useCase: .posts,
-                onTap: self.viewModel.handle(action:)
+                onTextTap: self.viewModel.handleDidTapText(config:),
+                onStarTap: self.viewModel.handleDidTapStar(config:)
             )
         }
     }

@@ -15,7 +15,9 @@ struct PostView: View {
 
     let config: PostConfig
     let useCase: UseCase
-    let onTap: Completion<ModelAction>
+
+    let onTextTap: Completion<PostConfig>
+    let onStarTap: Completion<PostConfig>
 
     // MARK: - Body
 
@@ -37,7 +39,7 @@ private extension PostView {
 
     var postTextButtonView: some View {
         Button(
-            action: { self.onTap(.init(action: .didTapText, config: self.config)) },
+            action: { self.onTextTap(self.config) },
             label: { self.postTextContentView }
         )
         .disabled(self.useCase == .favourite)
@@ -56,10 +58,12 @@ private extension PostView {
         Image(systemName: self.config.isFavourite ? "star.fill" : "star")
             .foregroundStyle(.yellow)
             .onTapGesture {
-                self.onTap(.init(action: .didTapStar, config: self.config))
+                self.onStarTap(self.config)
             }
     }
 }
+
+// MARK: - UseCase
 
 extension PostView {
 
@@ -68,16 +72,4 @@ extension PostView {
         case posts
         case favourite
     }
-
-    enum TapAction {
-
-        case didTapText
-        case didTapStar
-    }
-}
-
-struct ModelAction {
-
-    let action: PostView.TapAction
-    let config: PostConfig
 }

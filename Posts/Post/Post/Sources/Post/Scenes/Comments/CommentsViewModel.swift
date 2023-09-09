@@ -17,7 +17,7 @@ protocol CommentsViewModelProtocol: ContentStateObservable {
     var comments: [CommentModel] { get }
 
     func load()
-    func handle(action: ModelAction)
+    func handleDidTapstar(config: PostConfig)
 }
 
 final class CommentsViewModel: CommentsViewModelProtocol {
@@ -59,10 +59,10 @@ final class CommentsViewModel: CommentsViewModelProtocol {
         }
     }
 
-    func handle(action: ModelAction) {
+    func handleDidTapstar(config: PostConfig) {
         Task {
             do {
-                let model = action.config.model
+                let model = config.model
                 try await self.postsManager.updateFavourite(model: model)
 
                 await MainActor.run {
