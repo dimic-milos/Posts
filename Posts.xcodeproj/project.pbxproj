@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2B076A4E2AA9801C0080616D /* PostsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076A4D2AA9801C0080616D /* PostsApp.swift */; };
 		2B076A542AA9801E0080616D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B076A532AA9801E0080616D /* Assets.xcassets */; };
-		2B076A572AA9801E0080616D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B076A562AA9801E0080616D /* Preview Assets.xcassets */; };
 		2B076A612AA9801E0080616D /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076A602AA9801E0080616D /* PostsTests.swift */; };
 		2B5CB4102AA9FAEB00D525CD /* AppCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB40F2AA9FAEB00D525CD /* AppCoordinatorView.swift */; };
 		2B5CB4122AA9FAF100D525CD /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */; };
@@ -38,7 +37,6 @@
 		2B076A4A2AA9801C0080616D /* Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Posts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B076A4D2AA9801C0080616D /* PostsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsApp.swift; sourceTree = "<group>"; };
 		2B076A532AA9801E0080616D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2B076A562AA9801E0080616D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2B076A5C2AA9801E0080616D /* PostsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B076A602AA9801E0080616D /* PostsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTests.swift; sourceTree = "<group>"; };
 		2B1D4BC72AA989F400BBBBC2 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
@@ -106,30 +104,18 @@
 		2B076A4C2AA9801C0080616D /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				2B5ED2F12AAC7ADA00F8918B /* Testable */,
-				2BA1D8342AA98B60004F03BB /* Assets */,
+				2B09BF092AAD8ED700DB40D6 /* MainProject */,
 				2BA1D8362AA98BE4004F03BB /* Network */,
-				2B1D4BC62AA989B300BBBBC2 /* Models */,
 				2BA1D8382AA98C47004F03BB /* Persistence */,
+				2B1D4BC62AA989B300BBBBC2 /* Models */,
+				2B5CB4162AA9FCBC00D525CD /* Global */,
 				2BA1D83A2AA98CCC004F03BB /* UI */,
+				2BA1D8342AA98B60004F03BB /* Assets */,
+				2B5ED2F12AAC7ADA00F8918B /* Testable */,
 				2BA1D83C2AA98D1D004F03BB /* Login */,
 				2BA1D83E2AA98D62004F03BB /* Post */,
-				2B5CB4162AA9FCBC00D525CD /* Global */,
-				2B076A4D2AA9801C0080616D /* PostsApp.swift */,
-				2B5CB4362AAA0BD900D525CD /* DependencyRegistrationHelper.swift */,
-				2B5CB40E2AA9FAD100D525CD /* AppCoordinator */,
-				2B076A532AA9801E0080616D /* Assets.xcassets */,
-				2B076A552AA9801E0080616D /* Preview Content */,
 			);
 			path = Posts;
-			sourceTree = "<group>";
-		};
-		2B076A552AA9801E0080616D /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2B076A562AA9801E0080616D /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		2B076A5F2AA9801E0080616D /* PostsTests */ = {
@@ -139,6 +125,17 @@
 				2B076A602AA9801E0080616D /* PostsTests.swift */,
 			);
 			path = PostsTests;
+			sourceTree = "<group>";
+		};
+		2B09BF092AAD8ED700DB40D6 /* MainProject */ = {
+			isa = PBXGroup;
+			children = (
+				2B076A4D2AA9801C0080616D /* PostsApp.swift */,
+				2B5CB4362AAA0BD900D525CD /* DependencyRegistrationHelper.swift */,
+				2B5CB40E2AA9FAD100D525CD /* AppCoordinator */,
+				2B076A532AA9801E0080616D /* Assets.xcassets */,
+			);
+			path = MainProject;
 			sourceTree = "<group>";
 		};
 		2B1D4BC62AA989B300BBBBC2 /* Models */ = {
@@ -328,7 +325,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B076A572AA9801E0080616D /* Preview Assets.xcassets in Resources */,
 				2B076A542AA9801E0080616D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,7 +495,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Posts/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -527,7 +523,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Posts/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
