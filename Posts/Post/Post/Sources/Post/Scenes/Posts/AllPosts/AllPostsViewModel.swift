@@ -8,7 +8,7 @@
 import Foundation
 import Models
 
-final class AllPostsViewModel: PostsBaseViewModel {
+final class AllPostsViewModel: BasePostsViewModel {
 
     override func load() {
         Task {

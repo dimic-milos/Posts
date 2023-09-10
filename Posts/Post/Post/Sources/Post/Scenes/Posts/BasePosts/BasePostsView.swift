@@ -9,7 +9,7 @@ import SwiftUI
 import UI
 import Assets
 
-struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
+struct BasePostsView<ViewModel: BasePostsViewModelProtocol>: View {
 
     // MARK: - Private properties
 
@@ -35,7 +35,7 @@ struct PostsBaseView<ViewModel: PostsBaseViewModelProtocol>: View {
 
 // MARK: - Views
 
-private extension PostsBaseView {
+private extension BasePostsView {
 
     @ViewBuilder var content: some View {
         if self.viewModel.configs.isEmpty {

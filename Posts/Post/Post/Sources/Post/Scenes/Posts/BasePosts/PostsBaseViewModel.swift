@@ -13,7 +13,7 @@ import Models
 import UI
 import PostAPI
 
-protocol PostsBaseViewModelProtocol: ContentStateObservable {
+protocol BasePostsViewModelProtocol: ContentStateObservable {
 
     var configs: [PostConfig] { get }
 
@@ -22,9 +22,9 @@ protocol PostsBaseViewModelProtocol: ContentStateObservable {
     func handleDidTapStar(config: PostConfig)
 }
 
-class PostsBaseViewModel: 
-    BaseActionViewModel<PostsBaseViewModel.Action>,
-    PostsBaseViewModelProtocol
+class BasePostsViewModel: 
+    BaseActionViewModel<BasePostsViewModel.Action>,
+    BasePostsViewModelProtocol
 {
 
     // MARK: - Public properties
@@ -68,7 +68,7 @@ class PostsBaseViewModel:
 
 // MARK: - Actions
 
-extension PostsBaseViewModel {
+extension BasePostsViewModel {
 
     enum Action {
 

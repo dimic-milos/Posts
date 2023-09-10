@@ -34,7 +34,7 @@ struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
     }
 
     var posts: some View {
-        PostsBaseView(viewModel: self.viewModel.allPostsViewModel)
+        BasePostsView(viewModel: self.viewModel.allPostsViewModel)
             .tabItem {
                 Label(L10n.posts.localized, systemImage: "house")
             }
@@ -42,7 +42,7 @@ struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
     }
 
     var favourites: some View {
-        PostsBaseView(viewModel: self.viewModel.favouritePostsViewModel)
+        BasePostsView(viewModel: self.viewModel.favouritePostsViewModel)
             .tabItem {
                 Label(L10n.favourites.localized, systemImage: "star")
             }
