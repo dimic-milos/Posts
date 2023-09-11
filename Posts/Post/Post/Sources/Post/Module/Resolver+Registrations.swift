@@ -27,11 +27,13 @@ extension Resolver {
             PostsService()
         }
         .implements(PostsServiceProtocol.self)
+        .scope(.application)
 
         self.register {
             CommentsService()
         }
         .implements(CommentsServiceProtocol.self)
+        .scope(.application)
     }
 
     static func registerManagers() {
@@ -39,10 +41,12 @@ extension Resolver {
             PostsManager()
         }
         .implements(PostsManagerProtocol.self)
+        .scope(.application)
 
         self.register {
             CommentsManager()
         }
         .implements(CommentsManagerProtocol.self)
+        .scope(.application)
     }
 }
