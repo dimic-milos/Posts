@@ -21,12 +21,4 @@ extension Resolver {
         }
         .implements((any LoginCoordinatorViewProtocol).self)
     }
-
-    static func registerServices() {
-
-    }
-
-    static func registerManagers() {
-
-    }
 }
