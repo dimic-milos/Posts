@@ -9,7 +9,7 @@ import Foundation
 
 import Foundation
 
-public enum APIPath: Equatable {
+public enum APIPath: Equatable, Hashable {
 
     case posts
     case comments(postID: Int)

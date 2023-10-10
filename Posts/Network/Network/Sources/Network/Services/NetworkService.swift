@@ -16,11 +16,13 @@ public protocol NetworkServiceProtocol {
     ) async throws -> T
 }
 
-final class NetworkService {
+actor NetworkService {
 
     // MARK: - Private properties
 
     @Injected private var client: NetworkClientProtocol
+    
+    private var tasks: [NetworkServiceRequest: Task<Decodable, Error>] = [:]
     private let decoder = JSONDecoder()
 
     // MARK: - Init
@@ -36,19 +38,35 @@ extension NetworkService: NetworkServiceProtocol {
         request: NetworkServiceRequest,
         type: T.Type
     ) async throws -> T {
-        do {
-            let (data, response) = try await self.client.request(request)
-            if self.isSuccess(response, for: request) {
-                do {
-                    return try self.decoder.decode(type, from: data)
-                } catch {
-                    throw CustomError.decodingFailed(error: error)
+        if let task = self.tasks[request], let value = try await task.value as? T {
+            return value
+        }
+
+        let task = Task<Decodable, Error> {
+            do {
+                let (data, response) = try await self.client.request(request)
+                if self.isSuccess(response, for: request) {
+                    do {
+                        let item = try self.decoder.decode(type, from: data)
+                        self.tasks[request] = nil
+                        return item
+                    } catch {
+                        throw CustomError.decodingFailed(error: error)
+                    }
+                } else {
+                    throw CustomError.statusCodeNotInSuccessRange
                 }
-            } else {
-                throw CustomError.statusCodeNotInSuccessRange
+            } catch {
+                self.tasks[request] = nil
+                throw error
             }
-        } catch {
-            throw error
+        }
+        self.tasks[request] = task
+
+        if let value = try await task.value as? T {
+            return value
+        } else {
+            throw CustomError.castFail
         }
     }
 
@@ -73,6 +91,7 @@ extension NetworkService {
 
     enum CustomError: Error {
 
+        case castFail
         case statusCodeNotInSuccessRange
         case decodingFailed(error: Error)
     }
