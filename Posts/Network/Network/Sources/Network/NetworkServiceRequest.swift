@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NetworkServiceRequest: Equatable {
+public struct NetworkServiceRequest: Equatable, Hashable {
 
     // MARK: - Public properties
 
@@ -27,4 +27,3 @@ public struct NetworkServiceRequest: Equatable {
         self.parameters = parameters
     }
 }
-
