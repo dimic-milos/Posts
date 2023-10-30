@@ -10,8 +10,8 @@
 		2B076A4E2AA9801C0080616D /* PostsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076A4D2AA9801C0080616D /* PostsApp.swift */; };
 		2B076A542AA9801E0080616D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B076A532AA9801E0080616D /* Assets.xcassets */; };
 		2B076A612AA9801E0080616D /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076A602AA9801E0080616D /* PostsTests.swift */; };
-		2B5CB4102AA9FAEB00D525CD /* AppCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB40F2AA9FAEB00D525CD /* AppCoordinatorView.swift */; };
-		2B5CB4122AA9FAF100D525CD /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */; };
+		2B5CB4102AA9FAEB00D525CD /* TabCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB40F2AA9FAEB00D525CD /* TabCoordinatorView.swift */; };
+		2B5CB4122AA9FAF100D525CD /* TabCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CB4112AA9FAF100D525CD /* TabCoordinatorViewModel.swift */; };
 		2B5CB4152AA9FB8500D525CD /* FlowStacks in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4142AA9FB8500D525CD /* FlowStacks */; };
 		2B5CB4302AAA00FD00D525CD /* Global in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB42F2AAA00FD00D525CD /* Global */; };
 		2B5CB4352AAA094300D525CD /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4342AAA094300D525CD /* Resolver */; };
@@ -21,6 +21,8 @@
 		2B5CB43D2AAA428100D525CD /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43C2AAA428100D525CD /* UI */; };
 		2B5CB43F2AAAEE4800D525CD /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB43E2AAAEE4800D525CD /* Network */; };
 		2B5CB4412AAB19B300D525CD /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = 2B5CB4402AAB19B300D525CD /* Persistence */; };
+		2B76E1792AEF9A33006F2D37 /* AppCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B76E1782AEF9A33006F2D37 /* AppCoordinatorView.swift */; };
+		2B76E17B2AEF9A3C006F2D37 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B76E17A2AEF9A3C006F2D37 /* AppCoordinatorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +42,15 @@
 		2B076A5C2AA9801E0080616D /* PostsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PostsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B076A602AA9801E0080616D /* PostsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTests.swift; sourceTree = "<group>"; };
 		2B1D4BC72AA989F400BBBBC2 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
-		2B5CB40F2AA9FAEB00D525CD /* AppCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorView.swift; sourceTree = "<group>"; };
-		2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		2B5CB40F2AA9FAEB00D525CD /* TabCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinatorView.swift; sourceTree = "<group>"; };
+		2B5CB4112AA9FAF100D525CD /* TabCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		2B5CB4172AA9FCF900D525CD /* Global */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Global; sourceTree = "<group>"; };
 		2B5CB4362AAA0BD900D525CD /* DependencyRegistrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyRegistrationHelper.swift; sourceTree = "<group>"; };
 		2B5ED2F22AAC7B1200F8918B /* Testable */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Testable; sourceTree = "<group>"; };
 		2B63317F2AA9985500CAD37D /* Post */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Post; sourceTree = "<group>"; };
 		2B6331802AA9989600CAD37D /* PostAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PostAPI; sourceTree = "<group>"; };
+		2B76E1782AEF9A33006F2D37 /* AppCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorView.swift; sourceTree = "<group>"; };
+		2B76E17A2AEF9A3C006F2D37 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		2B95FAB22AA99E080034B723 /* PostsTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PostsTestPlan.xctestplan; sourceTree = "<group>"; };
 		2BA1D8352AA98B80004F03BB /* Assets */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Assets; sourceTree = "<group>"; };
 		2BA1D8372AA98C05004F03BB /* Network */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Network; sourceTree = "<group>"; };
@@ -130,9 +134,10 @@
 		2B09BF092AAD8ED700DB40D6 /* MainProject */ = {
 			isa = PBXGroup;
 			children = (
+				2B76E1772AEF9A22006F2D37 /* AppCoordinator */,
 				2B076A4D2AA9801C0080616D /* PostsApp.swift */,
 				2B5CB4362AAA0BD900D525CD /* DependencyRegistrationHelper.swift */,
-				2B5CB40E2AA9FAD100D525CD /* AppCoordinator */,
+				2B5CB40E2AA9FAD100D525CD /* TabCoordinator */,
 				2B076A532AA9801E0080616D /* Assets.xcassets */,
 			);
 			path = MainProject;
@@ -146,13 +151,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		2B5CB40E2AA9FAD100D525CD /* AppCoordinator */ = {
+		2B5CB40E2AA9FAD100D525CD /* TabCoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				2B5CB40F2AA9FAEB00D525CD /* AppCoordinatorView.swift */,
-				2B5CB4112AA9FAF100D525CD /* AppCoordinatorViewModel.swift */,
+				2B5CB40F2AA9FAEB00D525CD /* TabCoordinatorView.swift */,
+				2B5CB4112AA9FAF100D525CD /* TabCoordinatorViewModel.swift */,
 			);
-			path = AppCoordinator;
+			path = TabCoordinator;
 			sourceTree = "<group>";
 		};
 		2B5CB4162AA9FCBC00D525CD /* Global */ = {
@@ -176,6 +181,15 @@
 				2B5ED2F22AAC7B1200F8918B /* Testable */,
 			);
 			path = Testable;
+			sourceTree = "<group>";
+		};
+		2B76E1772AEF9A22006F2D37 /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				2B76E1782AEF9A33006F2D37 /* AppCoordinatorView.swift */,
+				2B76E17A2AEF9A3C006F2D37 /* AppCoordinatorViewModel.swift */,
+			);
+			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
 		2BA1D8342AA98B60004F03BB /* Assets */ = {
@@ -343,10 +357,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B5CB4122AA9FAF100D525CD /* AppCoordinatorViewModel.swift in Sources */,
+				2B5CB4122AA9FAF100D525CD /* TabCoordinatorViewModel.swift in Sources */,
 				2B076A4E2AA9801C0080616D /* PostsApp.swift in Sources */,
-				2B5CB4102AA9FAEB00D525CD /* AppCoordinatorView.swift in Sources */,
+				2B5CB4102AA9FAEB00D525CD /* TabCoordinatorView.swift in Sources */,
+				2B76E17B2AEF9A3C006F2D37 /* AppCoordinatorViewModel.swift in Sources */,
 				2B5CB4372AAA0BD900D525CD /* DependencyRegistrationHelper.swift in Sources */,
+				2B76E1792AEF9A33006F2D37 /* AppCoordinatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ struct PostsApp: App {
 
     // MARK: - Private properties
 
-    private let viewModel = AppCoordinatorViewModel()
+    private let viewModel = TabCoordinatorViewModel()
 
     // MARK: - Init
 
@@ -24,7 +24,7 @@ struct PostsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AppCoordinatorView(viewModel: self.viewModel)
+            TabCoordinatorView(viewModel: self.viewModel)
         }
     }
 }

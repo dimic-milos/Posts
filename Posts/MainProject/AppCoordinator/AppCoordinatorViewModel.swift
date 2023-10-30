@@ -2,55 +2,37 @@
 //  AppCoordinatorViewModel.swift
 //  Posts
 //
-//  Created by Milos Dimic on 07.09.23.
+//  Created by Milos Dimic on 30.10.23.
 //
 
 import SwiftUI
-import Resolver
-import FlowStacks
-import Global
-import LoginAPI
-import PostAPI
 
-final class AppCoordinatorViewModel: BaseCoordinatorViewModel<AppCoordinatorViewModel.Screen> {
+@Observable final class AppCoordinatorViewModel {
 
-    // MARK: - Private properties
+    var sidebar: SidebarScreen?
+    let sidebars: [SidebarScreen] = [
+        .main
+    ]
 
-    private var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
-    private var postCoordinatorViewModel: PostCoordinatorViewModelProtocol?
-
-    // MARK: - API
-
-    func startLoginFlow(action: Binding<LoginCoordinatorAction?>) {
-        let viewModel: LoginCoordinatorViewModelProtocol = Resolver.resolve(args: action)
-        self.loginCoordinatorViewModel = viewModel
-        self.routes = [.root(.login(viewModel), embedInNavigationView: true)]
-    }
-
-    func handle(loginCoordinatorAction: LoginCoordinatorAction) {
-        switch loginCoordinatorAction {
-        case .didLogin(let userID):
-            DependencyRegistrationHelper.registerDatabase(userID: userID)
-            self.startPostFlow(userID: userID)
-        }
-    }
-
-    // MARK: - Helpers
-
-    private func startPostFlow(userID: Int) {
-        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve(args: userID)
-        self.postCoordinatorViewModel = viewModel
-        self.routes.push(.posts(viewModel))
-    }
+    var content: ContentScreen?
+    let contents: [ContentScreen] = [
+        .tab,
+        .posts,
+        .favourites
+    ]
 }
-
-// MARK: - Screen
 
 extension AppCoordinatorViewModel {
 
-    enum Screen {
+    enum SidebarScreen: String {
 
-        case login(LoginCoordinatorViewModelProtocol)
-        case posts(PostCoordinatorViewModelProtocol)
+        case main
+    }
+
+    enum ContentScreen: String {
+        
+        case tab
+        case posts
+        case favourites
     }
 }
