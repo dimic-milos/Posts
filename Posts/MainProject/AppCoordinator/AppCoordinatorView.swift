@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Resolver
+import LoginAPI
+import PostAPI
 
 struct AppCoordinatorView: View {
 
     // MARK: - Private properties
 
     @State private var viewModel: AppCoordinatorViewModel
+    @State private var loginCoordinatorAction: LoginCoordinatorAction?
 
     // MARK: - Init
 
@@ -27,17 +31,27 @@ struct AppCoordinatorView: View {
             content: { self.contentView },
             detail: { self.detailView }
         )
+        .onChange(of: self.loginCoordinatorAction, initial: false) { _, newValue in
+            newValue.map(self.viewModel.handle(loginCoordinatorAction:))
+        }
+        .onChange(of: self.viewModel.content) { _, newValue in
+            self.viewModel.makePostCoordinatorViewModel()
+        }
+        .fullScreenCover(
+            isPresented: self.$viewModel.shouldShowLogin,
+            content: { self.loginView }
+        )
     }
 }
 
-// MARK: - Views
+// MARK: - Navigation Split Views
 
 private extension AppCoordinatorView {
 
     var sidebarView: some View {
         List(selection: self.$viewModel.sidebar) {
             ForEach(self.viewModel.sidebars, id: \.self) {
-                Text($0.rawValue)
+                Text($0.name)
             }
         }
     }
@@ -45,23 +59,48 @@ private extension AppCoordinatorView {
     var contentView: some View {
         List(selection: self.$viewModel.content) {
             ForEach(self.viewModel.contents, id: \.self) {
-                Text($0.rawValue)
+                Text($0.name)
             }
         }
     }
 
+    @ViewBuilder
     var detailView: some View {
-        if let content = self.viewModel.content {
-            switch content {
-            case .tab:
-                Text("tab")
-            case .posts:
-                Text("posts")
-            case .favourites:
-                Text("fav")
-            }
+        if let viewModel = self.viewModel.postCoordinatorViewModel {
+            self.makePostsCoordinatorView(viewModel: viewModel)
         } else {
             Text("N/A")
         }
+    }
+}
+
+// MARK: - Login
+
+private extension AppCoordinatorView {
+
+    var loginView: some View {
+        let viewModel = self.viewModel.makeLoginCoordinatorViewModel(
+            action: self.$loginCoordinatorAction
+        )
+        return self.makeLoginCoordinatorView(viewModel: viewModel)
+    }
+
+    func makeLoginCoordinatorView(
+        viewModel: LoginCoordinatorViewModelProtocol
+    ) -> some View {
+        let view: any LoginCoordinatorViewProtocol = Resolver.resolve(args: viewModel)
+        return AnyView(view)
+    }
+}
+
+// MARK: - Post
+
+private extension AppCoordinatorView {
+
+    func makePostsCoordinatorView(
+        viewModel: PostCoordinatorViewModelProtocol
+    ) -> some View {
+        let view: any PostCoordinatorViewProtocol = Resolver.resolve(args: viewModel)
+        return AnyView(view)
     }
 }

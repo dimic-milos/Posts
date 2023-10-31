@@ -8,9 +8,11 @@
 import SwiftUI
 import Combine
 import Global
+import PostAPI
 
 protocol PostsContainerViewModelProtocol: ObservableObject {
 
+    var useCase: PostCoordinatorUseCase { get }
     var allPostsViewModel: AllPostsViewModel { get }
     var favouritePostsViewModel: FavouritePostsViewModel { get }
 }
@@ -22,19 +24,24 @@ final class PostsContainerViewModel:
 
     // MARK: - Public properties
 
+    let useCase: PostCoordinatorUseCase
+
     lazy var allPostsViewModel = AllPostsViewModel(userID: self.userID)
     lazy var favouritePostsViewModel = FavouritePostsViewModel(userID: self.userID)
 
     // MARK: - Private properties
 
+    private let uuid = UUID()
     private let userID: Int
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init
     
-    init(userID: Int) {
+    init(useCase: PostCoordinatorUseCase, userID: Int) {
+        self.useCase = useCase
         self.userID = userID
         super.init()
+        
         self.subscribeToAllPostsViewModelAction()
         self.subscribeToFavouritePostsViewModelAction()
     }
@@ -78,5 +85,16 @@ private extension PostsContainerViewModel {
             }
         }
         .store(in: &self.cancellables)
+    }
+}
+
+extension PostsContainerViewModel: Equatable, Hashable {
+
+    static func == (lhs: PostsContainerViewModel, rhs: PostsContainerViewModel) -> Bool {
+        lhs.uuid == rhs.uuid
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self)
     }
 }

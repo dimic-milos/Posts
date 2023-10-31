@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-import FlowStacks
 import Global
 import LoginAPI
 
@@ -16,11 +15,13 @@ final class LoginCoordinatorViewModel:
     LoginCoordinatorViewModelProtocol
 {
 
+    // MARK: - Public properties
+
+    let loginViewModel = LoginViewModel()
+
     // MARK: - Private properties
 
     @Binding private var coordinatorAction: LoginCoordinatorAction?
-
-    private var loginViewModel: LoginViewModel?
 
     // MARK: - Init
 
@@ -28,22 +29,13 @@ final class LoginCoordinatorViewModel:
         self._coordinatorAction = coordinatorAction
         super.init()
 
-        self.startLoginFlow()
+        self.subscribeToLoginViewModelActions()
     }
 
     // MARK: - API
 
     func didLogin(userID: Int) {
         self.coordinatorAction = .didLogin(userID: userID)
-    }
-
-    // MARK: - Helpers
-
-    func startLoginFlow() {
-        let loginViewModel = LoginViewModel()
-        self.loginViewModel = loginViewModel
-        self.subscribeToLoginViewModelActions()
-        self.routes = [.root(.login(viewModel: loginViewModel))]
     }
 }
 
@@ -52,7 +44,7 @@ final class LoginCoordinatorViewModel:
 extension LoginCoordinatorViewModel {
 
     func subscribeToLoginViewModelActions() {
-        self.loginViewModel?.actionViewModel.$action.sink { [weak self] in
+        self.loginViewModel.actionViewModel.$action.sink { [weak self] in
             guard let self, let action = $0 else {
                 return
             }

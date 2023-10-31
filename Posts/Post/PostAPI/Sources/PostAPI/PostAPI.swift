@@ -14,3 +14,25 @@ public protocol PostsManagerProtocol {
     func fetchFavourites(ids: [Int]?) async throws -> [PostModel]
     func updateFavourite(model: PostModel) async throws
 }
+
+// MARK: - Config
+
+public struct PostCoordinatorConfig {
+
+    public let useCase: PostCoordinatorUseCase
+    public let userID: Int
+
+    public init(useCase: PostCoordinatorUseCase, userID: Int) {
+        self.useCase = useCase
+        self.userID = userID
+    }
+}
+
+// MARK: - UseCase
+
+public enum PostCoordinatorUseCase {
+
+    case combined
+    case posts
+    case favourites
+}

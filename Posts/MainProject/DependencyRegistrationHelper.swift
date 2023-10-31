@@ -10,6 +10,8 @@ import Persistence
 import Login
 import Post
 
+import Resolver
+
 enum DependencyRegistrationHelper {
 
     static func register() {

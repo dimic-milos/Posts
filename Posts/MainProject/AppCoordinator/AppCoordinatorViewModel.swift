@@ -6,33 +6,71 @@
 //
 
 import SwiftUI
+import Resolver
+import LoginAPI
+import PostAPI
 
 @Observable final class AppCoordinatorViewModel {
 
+    // MARK: - Public properties
+
     var sidebar: SidebarScreen?
-    let sidebars: [SidebarScreen] = [
-        .main
-    ]
+    let sidebars: [SidebarScreen] = [.main]
 
     var content: ContentScreen?
-    let contents: [ContentScreen] = [
-        .tab,
-        .posts,
-        .favourites
-    ]
-}
+    let contents: [ContentScreen] = [.combined, .posts, .favourites]
 
-extension AppCoordinatorViewModel {
+    var shouldShowLogin = true
+    private(set) var userID: Int?
 
-    enum SidebarScreen: String {
+    private(set) var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
+    private(set) var postCoordinatorViewModel: PostCoordinatorViewModelProtocol?
 
-        case main
+    // MARK: - API
+
+    func makeLoginCoordinatorViewModel(
+        action: Binding<LoginCoordinatorAction?>
+    ) -> LoginCoordinatorViewModelProtocol {
+        let viewModel: LoginCoordinatorViewModelProtocol = Resolver.resolve(
+            args: action
+        )
+        self.loginCoordinatorViewModel = viewModel
+        return viewModel
     }
 
-    enum ContentScreen: String {
-        
-        case tab
-        case posts
-        case favourites
+    func handle(loginCoordinatorAction: LoginCoordinatorAction) {
+        switch loginCoordinatorAction {
+        case .didLogin(let userID):
+            DependencyRegistrationHelper.registerDatabase(userID: userID)
+            self.userID = userID
+            self.shouldShowLogin = false
+            self.makePostCoordinatorViewModel()
+        }
+    }
+
+    func makePostCoordinatorViewModel() {
+        guard let userID else {
+            return
+        }
+        let useCase: PostCoordinatorUseCase = {
+            switch (self.content ?? .combined) {
+            case .combined:
+                return .combined
+            case .posts:
+                return .posts
+            case .favourites:
+                return .favourites
+            }
+        }()
+
+        let config: PostCoordinatorConfig = .init(
+            useCase: useCase,
+            userID: userID
+        )
+        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve(
+            args: config
+        )
+
+        self.postCoordinatorViewModel = viewModel
     }
 }
