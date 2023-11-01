@@ -12,24 +12,27 @@ struct PostCoordinatorView: PostCoordinatorViewProtocol {
 
     // MARK: - Private properties
 
-    @ObservedObject private var viewModel: PostCoordinatorViewModel
+    @StateObject private var viewModel: PostCoordinatorViewModel
 
     // MARK: - Init
 
     init(viewModel: PostCoordinatorViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - Body
 
     var body: some View {
         NavigationStack(path: self.$viewModel.path) {
-            self.view(for: .posts(viewModel: self.viewModel.postsContainerViewModel))
+//            self.view(for: .posts(viewModel: self.viewModel.postsContainerViewModel))
+            Button("start") {
+                self.viewModel.startPostFlow()
+            }
+            .navigationDestination(
+                for: PostCoordinatorViewModel.Screen.self,
+                destination: self.view(for:)
+            )
         }
-        .navigationDestination(
-            for: PostCoordinatorViewModel.Screen.self,
-            destination: self.view(for:)
-        )
     }
 }
 

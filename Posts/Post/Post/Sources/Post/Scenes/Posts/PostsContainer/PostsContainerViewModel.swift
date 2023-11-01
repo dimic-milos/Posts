@@ -12,7 +12,7 @@ import PostAPI
 
 protocol PostsContainerViewModelProtocol: ObservableObject {
 
-    var useCase: PostCoordinatorUseCase { get }
+    var screen: ContentScreen { get }
     var allPostsViewModel: AllPostsViewModel { get }
     var favouritePostsViewModel: FavouritePostsViewModel { get }
 }
@@ -24,7 +24,7 @@ final class PostsContainerViewModel:
 
     // MARK: - Public properties
 
-    let useCase: PostCoordinatorUseCase
+    let screen: ContentScreen
 
     lazy var allPostsViewModel = AllPostsViewModel(userID: self.userID)
     lazy var favouritePostsViewModel = FavouritePostsViewModel(userID: self.userID)
@@ -37,8 +37,8 @@ final class PostsContainerViewModel:
 
     // MARK: - Init
     
-    init(useCase: PostCoordinatorUseCase, userID: Int) {
-        self.useCase = useCase
+    init(screen: ContentScreen, userID: Int) {
+        self.screen = screen
         self.userID = userID
         super.init()
         

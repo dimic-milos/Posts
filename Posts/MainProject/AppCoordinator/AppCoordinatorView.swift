@@ -34,9 +34,6 @@ struct AppCoordinatorView: View {
         .onChange(of: self.loginCoordinatorAction, initial: false) { _, newValue in
             newValue.map(self.viewModel.handle(loginCoordinatorAction:))
         }
-        .onChange(of: self.viewModel.content) { _, newValue in
-            self.viewModel.makePostCoordinatorViewModel()
-        }
         .fullScreenCover(
             isPresented: self.$viewModel.shouldShowLogin,
             content: { self.loginView }
@@ -66,10 +63,15 @@ private extension AppCoordinatorView {
 
     @ViewBuilder
     var detailView: some View {
-        if let viewModel = self.viewModel.postCoordinatorViewModel {
-            self.makePostsCoordinatorView(viewModel: viewModel)
-        } else {
-            Text("N/A")
+        switch self.viewModel.content {
+        case .combined:
+            self.makePostsCoordinatorView(viewModel: self.viewModel.makePostCoordinatorViewModel(screen: .combined))
+        case .posts:
+            self.makePostsCoordinatorView(viewModel: self.viewModel.makePostCoordinatorViewModel(screen: .posts))
+        case .favourites:
+            self.makePostsCoordinatorView(viewModel: self.viewModel.makePostCoordinatorViewModel(screen: .favourites))
+        case .none:
+            Text("Please pick a sidebar option.")
         }
     }
 }

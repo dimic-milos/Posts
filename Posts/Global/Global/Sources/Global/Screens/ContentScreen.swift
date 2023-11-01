@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum ContentScreen {
+public enum ContentScreen {
 
     case combined
     case posts
     case favourites
 
-    var name: String {
+    public var name: String {
         switch self {
         case .combined:
             return "Combined"

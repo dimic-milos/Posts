@@ -9,6 +9,7 @@ import SwiftUI
 import Resolver
 import LoginAPI
 import PostAPI
+import Global
 
 @Observable final class AppCoordinatorViewModel {
 
@@ -21,10 +22,13 @@ import PostAPI
     let contents: [ContentScreen] = [.combined, .posts, .favourites]
 
     var shouldShowLogin = true
-    private(set) var userID: Int?
+    private(set) var userID: Int = .init()
 
     private(set) var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
-    private(set) var postCoordinatorViewModel: PostCoordinatorViewModelProtocol?
+    
+    private(set) var combinedPostCoordinatorViewModel: PostCoordinatorViewModelProtocol?
+    private(set) var postsCoordinatorViewModel: PostCoordinatorViewModelProtocol?
+    private(set) var favouritesPostCoordinatorViewModel: PostCoordinatorViewModelProtocol?
 
     // MARK: - API
 
@@ -44,33 +48,43 @@ import PostAPI
             DependencyRegistrationHelper.registerDatabase(userID: userID)
             self.userID = userID
             self.shouldShowLogin = false
-            self.makePostCoordinatorViewModel()
         }
     }
 
-    func makePostCoordinatorViewModel() {
-        guard let userID else {
-            return
-        }
-        let useCase: PostCoordinatorUseCase = {
-            switch (self.content ?? .combined) {
-            case .combined:
-                return .combined
-            case .posts:
-                return .posts
-            case .favourites:
-                return .favourites
+    func makePostCoordinatorViewModel(screen: ContentScreen) -> PostCoordinatorViewModelProtocol {
+        // Return cached if possible
+        switch screen {
+        case .combined:
+            if let combinedPostCoordinatorViewModel {
+                return combinedPostCoordinatorViewModel
             }
-        }()
+        case .posts:
+            if let postsCoordinatorViewModel {
+                return postsCoordinatorViewModel
+            }
+        case .favourites:
+            if let favouritesPostCoordinatorViewModel {
+                return favouritesPostCoordinatorViewModel
+            }
+        }
 
         let config: PostCoordinatorConfig = .init(
-            useCase: useCase,
+            screen: screen,
             userID: userID
         )
         let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve(
             args: config
         )
 
-        self.postCoordinatorViewModel = viewModel
+        switch screen {
+        case .combined:
+            self.combinedPostCoordinatorViewModel = viewModel
+        case .posts:
+            self.postsCoordinatorViewModel = viewModel
+        case .favourites:
+            self.favouritesPostCoordinatorViewModel = viewModel
+        }
+
+        return viewModel
     }
 }

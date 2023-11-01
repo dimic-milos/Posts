@@ -13,13 +13,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        .models
+        .models,
+        .global
     ],
     targets: [
         .target(
             name: "PostAPI",
             dependencies: [
-                .models
+                .models,
+                .global
             ]
         )
     ]
@@ -37,5 +39,20 @@ extension Target.Dependency {
     static var models: Target.Dependency = .product(
         name: "Models",
         package: "Models"
+    )
+}
+
+// MARK: - Global
+
+extension Package.Dependency {
+
+    static var global: Package.Dependency = .package(path: "../Global")
+}
+
+extension Target.Dependency {
+
+    static var global: Target.Dependency = .product(
+        name: "Global",
+        package: "Global"
     )
 }

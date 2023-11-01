@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum SidebarScreen {
+public enum SidebarScreen {
 
     case main
 
-    var name: String {
+    public var name: String {
         switch self {
         case .main:
             return "Main"

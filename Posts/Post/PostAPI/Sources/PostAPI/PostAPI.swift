@@ -1,5 +1,6 @@
 import SwiftUI
 import Models
+import Global
 
 // MARK: - Coordinator
 
@@ -19,20 +20,11 @@ public protocol PostsManagerProtocol {
 
 public struct PostCoordinatorConfig {
 
-    public let useCase: PostCoordinatorUseCase
+    public let screen: ContentScreen
     public let userID: Int
 
-    public init(useCase: PostCoordinatorUseCase, userID: Int) {
-        self.useCase = useCase
+    public init(screen: ContentScreen, userID: Int) {
+        self.screen = screen
         self.userID = userID
     }
-}
-
-// MARK: - UseCase
-
-public enum PostCoordinatorUseCase {
-
-    case combined
-    case posts
-    case favourites
 }

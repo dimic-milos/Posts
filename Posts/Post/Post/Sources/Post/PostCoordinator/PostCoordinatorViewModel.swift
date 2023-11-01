@@ -16,12 +16,11 @@ final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol, Observab
 
     @Published var path = NavigationPath()
 
-    private(set) var postsContainerViewModel: PostsContainerViewModel
-
     // MARK: - Private properties
 
-    let config: PostCoordinatorConfig
+    private let config: PostCoordinatorConfig
 
+    private var postsContainerViewModel: PostsContainerViewModel?
     private var commentsViewModel: CommentsViewModel?
 
     private var cancellables = Set<AnyCancellable>()
@@ -30,13 +29,18 @@ final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol, Observab
     
     init(config: PostCoordinatorConfig) {
         self.config = config
-        
+    }
+
+    // MARK: - API
+
+    func startPostFlow() {
         let postsContainerViewModel = PostsContainerViewModel(
-            useCase: self.config.useCase,
+            screen: self.config.screen,
             userID: self.config.userID
         )
         self.postsContainerViewModel = postsContainerViewModel
         self.subscribeToPostsContainerViewModelAction()
+        self.path.append(Screen.posts(viewModel: postsContainerViewModel))
     }
 
     // MARK: - Helpers
@@ -64,7 +68,7 @@ extension PostCoordinatorViewModel {
 private extension PostCoordinatorViewModel {
 
     func subscribeToPostsContainerViewModelAction() {
-        self.postsContainerViewModel.actionViewModel.$action.sink { [weak self] in
+        self.postsContainerViewModel?.actionViewModel.$action.sink { [weak self] in
             guard let self, let action = $0 else {
                 return
             }

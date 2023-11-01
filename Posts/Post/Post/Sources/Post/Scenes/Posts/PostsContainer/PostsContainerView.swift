@@ -28,7 +28,7 @@ struct PostsContainerView<ViewModel: PostsContainerViewModelProtocol>: View {
     var body: some View {
         self.contentView
             .navigationTitle(self.title)
-            .navigationBarBackButtonHidden()
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -38,7 +38,7 @@ private extension PostsContainerView {
 
     @ViewBuilder
     var contentView: some View {
-        switch self.viewModel.useCase {
+        switch self.viewModel.screen {
         case .combined:
             self.combinedView
         case .posts:
@@ -77,7 +77,7 @@ private extension PostsContainerView {
 private extension PostsContainerView {
 
     var title: String {
-        switch self.viewModel.useCase {
+        switch self.viewModel.screen {
         case .combined:
             return self.selectedTab.navTitle
         case .posts:
