@@ -46,7 +46,7 @@ private extension NetworkClient {
 
         var urlRequest = URLRequest(
             url: components.url!,
-            cachePolicy: .reloadRevalidatingCacheData
+            cachePolicy: .reloadIgnoringLocalAndRemoteCacheData
         )
         urlRequest.httpMethod = request.method.rawValue
 

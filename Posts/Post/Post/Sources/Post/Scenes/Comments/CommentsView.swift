@@ -28,6 +28,7 @@ struct CommentsView<ViewModel: CommentsViewModelProtocol>: View {
             self.content
         }
         .navigationTitle(L10n.comments.localized)
+        .navigationBarTitleDisplayMode(.inline)
         .onFirstAppear {
             self.viewModel.load()
         }

@@ -6,25 +6,30 @@
 //
 
 import SwiftUI
-import FlowStacks
 import PostAPI
 
 struct PostCoordinatorView: PostCoordinatorViewProtocol {
 
     // MARK: - Private properties
 
-    @State private var viewModel: PostCoordinatorViewModel
+    @StateObject private var viewModel: PostCoordinatorViewModel
 
     // MARK: - Init
 
     init(viewModel: PostCoordinatorViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = .init(wrappedValue: viewModel)
     }
 
     // MARK: - Body
 
     var body: some View {
-        self.content
+        NavigationStack(path: self.$viewModel.path) {
+            self.view(for: .posts(viewModel: self.viewModel.postsContainerViewModel))
+                .navigationDestination(
+                    for: PostCoordinatorViewModel.Screen.self,
+                    destination: self.view(for:)
+                )
+        }
     }
 }
 
@@ -32,14 +37,13 @@ struct PostCoordinatorView: PostCoordinatorViewProtocol {
 
 private extension PostCoordinatorView {
 
-    var content: some View {
-        Router(self.$viewModel.routes) { screen, _ in
-            switch screen {
-            case .posts(let viewModel):
-                PostsContainerView(viewModel: viewModel)
-            case .comments(let viewModel):
-                CommentsView(viewModel: viewModel)
-            }
+    @ViewBuilder
+    func view(for screen: PostCoordinatorViewModel.Screen) -> some View {
+        switch screen {
+        case .posts(let viewModel):
+            PostsContainerView(viewModel: viewModel)
+        case .comments(let viewModel):
+            CommentsView(viewModel: viewModel)
         }
     }
 }

@@ -12,7 +12,7 @@ extension Resolver {
 
     static func registerCoordinators() {
         self.register { _, args in
-            PostCoordinatorViewModel(userID: args())
+            PostCoordinatorViewModel(config: args())
         }
         .implements(PostCoordinatorViewModelProtocol.self)
 

@@ -2,55 +2,89 @@
 //  AppCoordinatorViewModel.swift
 //  Posts
 //
-//  Created by Milos Dimic on 07.09.23.
+//  Created by Milos Dimic on 30.10.23.
 //
 
 import SwiftUI
 import Resolver
-import FlowStacks
-import Global
 import LoginAPI
 import PostAPI
+import Global
 
-final class AppCoordinatorViewModel: BaseCoordinatorViewModel<AppCoordinatorViewModel.Screen> {
+@Observable final class AppCoordinatorViewModel {
 
-    // MARK: - Private properties
+    // MARK: - Public properties
 
-    private var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
-    private var postCoordinatorViewModel: PostCoordinatorViewModelProtocol?
+    var sidebar: SidebarScreen?
+    let sidebars: [SidebarScreen] = [.main]
+
+    var content: ContentScreen?
+    let contents: [ContentScreen] = [.combined, .posts, .favourites]
+
+    var shouldShowLogin = true
+    private(set) var userID: Int = .init()
+
+    private(set) var loginCoordinatorViewModel: LoginCoordinatorViewModelProtocol?
+    
+    private(set) var combinedPostCoordinatorViewModel: PostCoordinatorViewModelProtocol?
+    private(set) var postsCoordinatorViewModel: PostCoordinatorViewModelProtocol?
+    private(set) var favouritesPostCoordinatorViewModel: PostCoordinatorViewModelProtocol?
 
     // MARK: - API
 
-    func startLoginFlow(action: Binding<LoginCoordinatorAction?>) {
-        let viewModel: LoginCoordinatorViewModelProtocol = Resolver.resolve(args: action)
+    func makeLoginCoordinatorViewModel(
+        action: Binding<LoginCoordinatorAction?>
+    ) -> LoginCoordinatorViewModelProtocol {
+        let viewModel: LoginCoordinatorViewModelProtocol = Resolver.resolve(
+            args: action
+        )
         self.loginCoordinatorViewModel = viewModel
-        self.routes = [.root(.login(viewModel), embedInNavigationView: true)]
+        return viewModel
     }
 
     func handle(loginCoordinatorAction: LoginCoordinatorAction) {
         switch loginCoordinatorAction {
         case .didLogin(let userID):
             DependencyRegistrationHelper.registerDatabase(userID: userID)
-            self.startPostFlow(userID: userID)
+            self.userID = userID
+            self.shouldShowLogin = false
         }
     }
 
-    // MARK: - Helpers
+    func makePostCoordinatorViewModel(screen: ContentScreen) -> PostCoordinatorViewModelProtocol {
+        // Return cached if possible
+        switch screen {
+        case .combined:
+            if let combinedPostCoordinatorViewModel {
+                return combinedPostCoordinatorViewModel
+            }
+        case .posts:
+            if let postsCoordinatorViewModel {
+                return postsCoordinatorViewModel
+            }
+        case .favourites:
+            if let favouritesPostCoordinatorViewModel {
+                return favouritesPostCoordinatorViewModel
+            }
+        }
 
-    private func startPostFlow(userID: Int) {
-        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve(args: userID)
-        self.postCoordinatorViewModel = viewModel
-        self.routes.push(.posts(viewModel))
-    }
-}
+        let config: PostCoordinatorConfig = .init(
+            screen: screen,
+            userID: userID
+        )
+        let viewModel: PostCoordinatorViewModelProtocol = Resolver.resolve(
+            args: config
+        )
 
-// MARK: - Screen
+        switch screen {
+        case .combined:
+            self.combinedPostCoordinatorViewModel = viewModel
+        case .posts:
+            self.postsCoordinatorViewModel = viewModel
+        case .favourites:
+            self.favouritesPostCoordinatorViewModel = viewModel
+        }
 
-extension AppCoordinatorViewModel {
-
-    enum Screen {
-
-        case login(LoginCoordinatorViewModelProtocol)
-        case posts(PostCoordinatorViewModelProtocol)
+        return viewModel
     }
 }

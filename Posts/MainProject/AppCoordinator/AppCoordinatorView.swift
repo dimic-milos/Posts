@@ -2,13 +2,11 @@
 //  AppCoordinatorView.swift
 //  Posts
 //
-//  Created by Milos Dimic on 07.09.23.
+//  Created by Milos Dimic on 30.10.23.
 //
 
 import SwiftUI
-import FlowStacks
 import Resolver
-import UI
 import LoginAPI
 import PostAPI
 
@@ -26,39 +24,84 @@ struct AppCoordinatorView: View {
     }
 
     // MARK: - Body
-
+    
     var body: some View {
-        self.content
-            .onFirstAppear {
-                self.viewModel.startLoginFlow(action: self.$loginCoordinatorAction)
-            }
-            .onChange(of: self.loginCoordinatorAction, initial: false) { _, newValue in
-                newValue.map(self.viewModel.handle(loginCoordinatorAction:))
-            }
+        NavigationSplitView(
+            sidebar: { self.sidebarView },
+            content: { self.contentView },
+            detail: { self.detailView }
+        )
+        .onChange(of: self.loginCoordinatorAction, initial: false) { _, newValue in
+            newValue.map(self.viewModel.handle(loginCoordinatorAction:))
+        }
+        .fullScreenCover(
+            isPresented: self.$viewModel.shouldShowLogin,
+            content: { self.loginView }
+        )
     }
 }
 
-// MARK: - Views
+// MARK: - Navigation Split Views
 
 private extension AppCoordinatorView {
 
-    var content: some View {
-        Router(self.$viewModel.routes) { screen, _ in
-            switch screen {
-            case .login(let viewModel):
-                self.makeLoginCoordinatorView(viewModel: viewModel)
-            case .posts(let viewModel):
-                self.makePostsCoordinatorView(viewModel: viewModel)
+    var sidebarView: some View {
+        List(selection: self.$viewModel.sidebar) {
+            ForEach(self.viewModel.sidebars, id: \.self) {
+                Text($0.name)
             }
         }
     }
 
-    func makeLoginCoordinatorView(viewModel: LoginCoordinatorViewModelProtocol) -> some View {
+    var contentView: some View {
+        List(selection: self.$viewModel.content) {
+            ForEach(self.viewModel.contents, id: \.self) {
+                Text($0.name)
+            }
+        }
+    }
+
+    @ViewBuilder
+    var detailView: some View {
+        switch self.viewModel.content {
+        case .combined:
+            self.makePostsCoordinatorView(viewModel: self.viewModel.makePostCoordinatorViewModel(screen: .combined))
+        case .posts:
+            self.makePostsCoordinatorView(viewModel: self.viewModel.makePostCoordinatorViewModel(screen: .posts))
+        case .favourites:
+            self.makePostsCoordinatorView(viewModel: self.viewModel.makePostCoordinatorViewModel(screen: .favourites))
+        case .none:
+            Text("Please pick a sidebar option.")
+        }
+    }
+}
+
+// MARK: - Login
+
+private extension AppCoordinatorView {
+
+    var loginView: some View {
+        let viewModel = self.viewModel.makeLoginCoordinatorViewModel(
+            action: self.$loginCoordinatorAction
+        )
+        return self.makeLoginCoordinatorView(viewModel: viewModel)
+    }
+
+    func makeLoginCoordinatorView(
+        viewModel: LoginCoordinatorViewModelProtocol
+    ) -> some View {
         let view: any LoginCoordinatorViewProtocol = Resolver.resolve(args: viewModel)
         return AnyView(view)
     }
+}
 
-    func makePostsCoordinatorView(viewModel: PostCoordinatorViewModelProtocol) -> some View {
+// MARK: - Post
+
+private extension AppCoordinatorView {
+
+    func makePostsCoordinatorView(
+        viewModel: PostCoordinatorViewModelProtocol
+    ) -> some View {
         let view: any PostCoordinatorViewProtocol = Resolver.resolve(args: viewModel)
         return AnyView(view)
     }

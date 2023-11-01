@@ -13,32 +13,12 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .flowStacks
     ],
     targets: [
         .target(
             name: "Global",
             dependencies: [
-                .flowStacks
             ]
         )
     ]
 )
-
-// MARK: - FlowStacks
-
-extension Package.Dependency {
-
-    static var flowStacks: Package.Dependency = .package(
-        url: "https://github.com/johnpatrickmorgan/FlowStacks.git",
-        exact: "0.3.4"
-    )
-}
-
-extension Target.Dependency {
-
-    static var flowStacks: Target.Dependency = .product(
-        name: "FlowStacks",
-        package: "FlowStacks"
-    )
-}

@@ -35,6 +35,8 @@ final class CommentsViewModel: CommentsViewModelProtocol {
     @Injected private var postsManager: PostsManagerProtocol
     @Injected private var commentsManager: CommentsManagerProtocol
 
+    private let uuid = UUID()
+
     // MARK: - Init
 
     init(config: PostConfig) {
@@ -76,5 +78,16 @@ final class CommentsViewModel: CommentsViewModelProtocol {
                 self.set(state: .failed)
             }
         }
+    }
+}
+
+extension CommentsViewModel: Equatable, Hashable {
+    
+    static func == (lhs: CommentsViewModel, rhs: CommentsViewModel) -> Bool {
+        lhs.uuid == rhs.uuid
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self)
     }
 }

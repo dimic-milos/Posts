@@ -7,41 +7,39 @@
 
 import SwiftUI
 import Combine
-import FlowStacks
 import Global
 import PostAPI
 
-final class PostCoordinatorViewModel:
-    BaseCoordinatorViewModel<PostCoordinatorViewModel.Screen>,
-    PostCoordinatorViewModelProtocol
-{
+final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol, ObservableObject {
+
+    // MARK: - Public properties
+
+    @Published var path = NavigationPath()
+
+    private(set) var postsContainerViewModel: PostsContainerViewModel
 
     // MARK: - Private properties
 
-    private var postsContainerViewModel: PostsContainerViewModel?
     private var commentsViewModel: CommentsViewModel?
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Init
     
-    init(userID: Int) {
-        super.init()
-
-        self.startPostsFlow(userID: userID)
+    init(config: PostCoordinatorConfig) {
+        let postsContainerViewModel = PostsContainerViewModel(
+            screen: config.screen,
+            userID: config.userID
+        )
+        self.postsContainerViewModel = postsContainerViewModel
+        self.subscribeToPostsContainerViewModelAction()
     }
 
     // MARK: - Helpers
 
-    private func startPostsFlow(userID: Int) {
-        let postsContainerViewModel = PostsContainerViewModel(userID: userID)
-        self.postsContainerViewModel = postsContainerViewModel
-        self.routes = [.root(.posts(viewModel: postsContainerViewModel))]
-        self.subscribeToPostsContainerViewModelAction()
-    }
-
     private func startCommnetsFlow(config: PostConfig) {
         let commentsViewModel = CommentsViewModel(config: config)
         self.commentsViewModel = commentsViewModel
-        self.routes.push(.comments(viewModel: commentsViewModel))
+        self.path.append(Screen.comments(viewModel: commentsViewModel))
     }
 }
 
@@ -49,7 +47,7 @@ final class PostCoordinatorViewModel:
 
 extension PostCoordinatorViewModel {
 
-    enum Screen {
+    enum Screen: Equatable, Hashable {
 
         case posts(viewModel: PostsContainerViewModel)
         case comments(viewModel: CommentsViewModel)
@@ -61,7 +59,7 @@ extension PostCoordinatorViewModel {
 private extension PostCoordinatorViewModel {
 
     func subscribeToPostsContainerViewModelAction() {
-        self.postsContainerViewModel?.actionViewModel.$action.sink { [weak self] in
+        self.postsContainerViewModel.actionViewModel.$action.sink { [weak self] in
             guard let self, let action = $0 else {
                 return
             }
