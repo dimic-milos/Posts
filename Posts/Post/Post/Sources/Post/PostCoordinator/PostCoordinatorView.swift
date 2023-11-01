@@ -24,14 +24,11 @@ struct PostCoordinatorView: PostCoordinatorViewProtocol {
 
     var body: some View {
         NavigationStack(path: self.$viewModel.path) {
-//            self.view(for: .posts(viewModel: self.viewModel.postsContainerViewModel))
-            Button("start") {
-                self.viewModel.startPostFlow()
-            }
-            .navigationDestination(
-                for: PostCoordinatorViewModel.Screen.self,
-                destination: self.view(for:)
-            )
+            self.view(for: .posts(viewModel: self.viewModel.postsContainerViewModel))
+                .navigationDestination(
+                    for: PostCoordinatorViewModel.Screen.self,
+                    destination: self.view(for:)
+                )
         }
     }
 }
