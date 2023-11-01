@@ -34,14 +34,6 @@ final class PostCoordinatorViewModel: PostCoordinatorViewModelProtocol, Observab
         self.subscribeToPostsContainerViewModelAction()
     }
 
-    // MARK: - API
-
-    func startPostFlow() {
-        print("MiDi 12.12.2016", #file, #line, #function, self.path.count)
-        self.path.append(Screen.posts(viewModel: postsContainerViewModel))
-        print("MiDi 12.12.2016", #file, #line, #function, self.path.count)
-    }
-
     // MARK: - Helpers
 
     private func startCommnetsFlow(config: PostConfig) {
